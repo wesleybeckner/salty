@@ -1,0 +1,36 @@
+<<<<<<< HEAD,,,,,,,,,,,,
+SMILES,CAS,name,density,heat capacity,Viscosity (298),Viscosity (353),Viscosity (350 calculated),Cation,NCBI_Cat,Anion (hydrogeted),NCBI_An,Viscosity citation
+CCCCN1C=C[N+](=C1)C.CC(=O)[O-],284049-75-8,1-Butyl-3-methylimidazolium acetate,1.053,383,0.349,0.0235 å± 0.0011,0.0148,BMI,2734162,ACE,175,"Hiraga, Y.; Kato, A.; Sato, Y.; Smith, R. (2015) J. Chem. Eng. Data 60(3), 876-885."
+CCCCN1C=C[N+](=C1)C.COS(=O)(=O)[O-],401788-98-5,1-Butyl-3-methylimidazolium methyl sulfate,1.209,416,0.094,,,BMI,2734162,MTS,6412,
+CCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,174899-83-3,1-Butyl-3-methylimidazolium bis(trifluoromethylsulfonyl)imide,1.436,566,0.05,0.00956 å± 0.00045,0.0207,BMI,2734162,TF2,157857,"Hiraga, Y.; Kato, A.; Sato, Y.; Smith, R. (2015) J. Chem. Eng. Data 60(3), 876-885."
+CCN1C=C[N+](=C1)C.CC(=O)[O-],143314-17-4,1-Ethyl-3-methylimidazolium acetate,1.099,322,0.135, 0.017 å± 0.002,0.0108,EMI,174076,ACE,175,"Fendt, S.; Padmanabhan, S.; Blanch, H. W.; Prausnitz, J. M. (2011) J. Chem. Eng. Data 56(1), 31-34."
+CCN1C=C[N+](=C1)C.CCOS(=O)(=O)[O-],342573-75-5,1-Ethyl-3-methylimidazolium ethyl sulfate,1.238,387,0.098,0.0146 å± 0.0003,0.0184,EMI,174076,ETS,6004,"Schmidt, H.; Stephan, M.; Safarov, J.; Kul, I.; Nocke, J.; Abdulagatov, I. M.; Hassel, E. (2012) J. Chem. Thermodyn. 47, 68-75."
+CCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[O-],145022-44-2,1-Ethyl-3-methylimidazolium trifluoromethanesulfonate,1.386,363,0.042,0.01197 å± 0.00051,0.0167,EMI,174076,FMS,62406,"Foo, C. K.; Leo, C. Y.; Aramesh, R.; Aroua, M. K.; Aghamohammadi, N.; Shafeeyan, M. S.; Shamiri, A. (2015) J. Mol. Liq. 209, 596-602."
+CCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,174899-82-2,1-Ethyl-3-methylimidazolium bis(trifluoromethylsulfonyl)imide,1.519,509,0.033,0.00804 å± 0.00041,,EMI,174076,TF2,157857,"Tariq, M.; Carvalho, P.; Coutinho, J. A. P.; Marrucho, I. M.; Lopes, J. N. C.; Rebelo, L. P. N. (2011) Fluid Phase Equilib. 301(1), 22-32."
+CCN1C=C[N+](=C1)C.CCOS(=O)(=O)[O-],342573-75-5,1-Ethyl-3-methylpyridinium ethyl sulfate,1.221,389,0.156,,,EPY,3599605,ETS,6004,
+CC[N+]1(CCCC1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,223436-99-5,1-Ethyl-1-methylpyrrolidinium bis(trifluoromethylsulfonyl)imide,1.489,491,,,,EPY,3599605,TF2,157857,
+CCCCCCN1C=C[N+](=C1)C.[Cl-],171058-17-6,1-Hexyl-3-methylimidazolium chloride,1.036,381,18.1,0.293 å± 0.057,,HMI,2734164,CHL,312,"Fendt, S.; Padmanabhan, S.; Blanch, H. W.; Prausnitz, J. M. (2011) J. Chem. Eng. Data 56(1), 31-34."
+CCCCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,382150-50-7,1-Hexyl-3-methylimidazolium bis(trifluormethylsulfonyl)imide,1.367,628,0.072,,,HMI,2734164,TF2,157857,
+CCCCCC[N+]1=CC=CC=C1.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,460983-97-5,N-hexylpyridinium bis(trifluoromethylsulfonyl)imide,1.391,612,0.087,,,HPY,2734173,TF2,157857,
+CCCCCCCCN1C=C[N+](=C1)C.[Cl-],64697-40-1,1-Octyl-3-methylimidazolium chloride,1.01,445,20.93,,,OMI,2734224,CHL,312,
+CCCCCCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[O-],403842-84-2,1-Methyl-3-octylimidazolium trifluoromethanesulfonate,1.157,,,,,OMI,2734224,FMS,62406,
+CCCCCCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,178631-04-4,1-Methyl-3-octylimidazolium bis(trifluormethylsulfonyl)imide,1.292,672,0.091,,,OMI,2734224,TF2,157857,
+,,BAM FOR,,,,,0.025,,,,,
+=======,,,,,,,,,,,,
+SMILES,CAS,name,density,heat capacity,viscosity,Cation,NCBI_Cat,Anion (hydrogeted),NCBI_An,,,
+CCCCN1C=C[N+](=C1)C.CC(=O)[O-],284049-75-8,1-Butyl-3-methylimidazolium acetate,1.053,383,0.349,BMI,2734162,ACE,175,,,
+CCCCN1C=C[N+](=C1)C.COS(=O)(=O)[O-],401788-98-5,1-Butyl-3-methylimidazolium methyl sulfate,1.209,416,0.094,BMI,2734162,MTS,6412,,,
+CCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,174899-83-3,1-Butyl-3-methylimidazolium bis(trifluoromethylsulfonyl)imide,1.436,566,0.05,BMI,2734162,TF2,157857,,,
+CCN1C=C[N+](=C1)C.CC(=O)[O-],143314-17-4,1-Ethyl-3-methylimidazolium acetate,1.099,322,0.135,EMI,174076,ACE,175,,,
+CCN1C=C[N+](=C1)C.CCOS(=O)(=O)[O-],342573-75-5,1-Ethyl-3-methylimidazolium ethyl sulfate,1.238,387,0.098,EMI,174076,ETS,6004,,,
+CCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[O-],145022-44-2,1-Ethyl-3-methylimidazolium trifluoromethanesulfonate,1.386,363,0.042,EMI,174076,FMS,62406,,,
+CCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,174899-82-2,1-Ethyl-3-methylimidazolium bis(trifluoromethylsulfonyl)imide,1.519,509,0.033,EMI,174076,TF2,157857,,,
+CCN1C=C[N+](=C1)C.CCOS(=O)(=O)[O-],342573-75-5,1-Ethyl-3-methylpyridinium ethyl sulfate,1.221,389,0.156,EPY,3599605,ETS,6004,,,
+CC[N+]1(CCCC1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,223436-99-5,1-Ethyl-1-methylpyrrolidinium bis(trifluoromethylsulfonyl)imide,1.489,491,,EPY,3599605,TF2,157857,,,
+CCCCCCN1C=C[N+](=C1)C.[Cl-],171058-17-6,1-Hexyl-3-methylimidazolium chloride,1.036,381,18.1,HMI,2734164,CHL,312,,,
+CCCCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,382150-50-7,1-Hexyl-3-methylimidazolium bis(trifluormethylsulfonyl)imide,1.367,628,0.072,HMI,2734164,TF2,157857,,,
+CCCCCC[N+]1=CC=CC=C1.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,460983-97-5,N-hexylpyridinium bis(trifluoromethylsulfonyl)imide,1.391,612,0.087,HPY,2734173,TF2,157857,,,
+CCCCCCCCN1C=C[N+](=C1)C.[Cl-],64697-40-1,1-Octyl-3-methylimidazolium chloride,1.01,445,20.93,OMI,2734224,CHL,312,,,
+CCCCCCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[O-],403842-84-2,1-Methyl-3-octylimidazolium trifluoromethanesulfonate,1.157,,,OMI,2734224,FMS,62406,,,
+CCCCCCCCN1C=C[N+](=C1)C.C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,178631-04-4,1-Methyl-3-octylimidazolium bis(trifluormethylsulfonyl)imide,1.292,672,0.091,OMI,2734224,TF2,157857,,,
+>>>>>>> 7763553386186fc60dbb4f07e010a363d057fc19,,,,,,,,,,,,
