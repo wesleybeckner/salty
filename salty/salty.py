@@ -23,9 +23,7 @@ def checkName(user_query):
     import numpy as np
     
     ###Check to see that the database is present
-    if os.path.isfile('../salty/data/saltInfo.csv'):
-        print('database found')
-    else:
+    if os.path.isfile('../salty/data/saltInfo.csv') == False:
         print('database file missing... exiting')
         quit()
     df = pd.read_csv('../salty/data/saltInfo.csv').astype(str)
@@ -35,7 +33,7 @@ def checkName(user_query):
         input_type = df.loc[:,(df == user_query).any(axis=0)].columns.values
         target_column_index = df.columns.get_loc(input_type[0])
     except:
-        print("query not found")
+        print("query %s not found" % target_lookup)
         return 0
 
     #row_index pairs 1-4, 2-5, and 3-6
