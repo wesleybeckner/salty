@@ -19,9 +19,6 @@
 0,CCCCN1C=C[N+](=C1)C,[I-],"CCCCN1C=C[N+](=C1)C,[I-]",1-butyl-3-methylimidazolium ,iodide,1-butyl-3-methylimidazolium  iodide
 0,CCN1C=C[N+](=C1)C,F[P-](F)(F)(F)(F)F,"CCN1C=C[N+](=C1)C,F[P-](F)(F)(F)(F)F",1-ethyl-3-methylimidazolium,hexafluorophosphate,1-ethyl-3-methylimidazolium hexafluorophosphate
 0,CCCCN1C=C[N+](=C1)C,F[P-](F)(F)(F)(F)F,"CCCCN1C=C[N+](=C1)C,F[P-](F)(F)(F)(F)F",1-butyl-3-methylimidazolium ,hexafluorophosphate,1-butyl-3-methylimidazolium  hexafluorophosphate
-0,CCN1C=C[N+](=C1)C,"CCOS(=O)(=O)[O-]
-","CCN1C=C[N+](=C1)C,CCOS(=O)(=O)[O-]
-",1-ethyl-3-methylimidazolium,ethyl sulfate,1-ethyl-3-methylimidazolium ethyl sulfate
 0,CCN1C=C[N+](=C1)C,CCOS(=O)(=O)[O-],"CCN1C=C[N+](=C1)C,CCOS(=O)(=O)[O-]",1-ethyl-3-methylimidazolium,ethyl sulfate,1-ethyl-3-methylimidazolium ethyl sulfate
 0,CN1C=C[N+](=C1)C,COS(=O)(=O)[O-],"CN1C=C[N+](=C1)C,COS(=O)(=O)[O-]","1,3-dimethylimidazolium ",dimethylphosphate,"1,3-dimethylimidazolium  dimethylphosphate"
 0,CCCCN1C=C[N+](=C1)C,C(#N)[N-]C#N,"CCCCN1C=C[N+](=C1)C,C(#N)[N-]C#N",1-butyl-3-methylimidazolium ,dicyanamide,1-butyl-3-methylimidazolium  dicyanamide
@@ -39,3 +36,16 @@
 0,CCCCN1C=C[N+](=C1)C,CC(=O)[O-],"CCCCN1C=C[N+](=C1)C,CC(=O)[O-]",1-butyl-3-methylimidazolium ,acetate,1-butyl-3-methylimidazolium  acetate
 0,CCN1C=C[N+](=C1)C,C(C(F)(F)S(=O)(=O)NS(=O)(=O)C(C(F)(F)F)(F)F)(F)(F)F,"CCN1C=C[N+](=C1)C,C(C(F)(F)S(=O)(=O)NS(=O)(=O)C(C(F)(F)F)(F)F)(F)(F)F",1-ethyl-3-methylimidazolium,"1,1,2,2,2-pentafluoro-N-[(pentafluoroethyl)sulfonyl]ethanesulfonamide","1-ethyl-3-methylimidazolium 1,1,2,2,2-pentafluoro-N-[(pentafluoroethyl)sulfonyl]ethanesulfonamide"
 0,CCN1C=C[N+](=C1)C,C(#N)[N-]C#N,"CCN1C=C[N+](=C1)C,C(#N)[N-]C#N",1-ethyl-3-methylimidazolium, dicyanamide,1-ethyl-3-methylimidazolium  dicyanamide
+0,CCCCCCCCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC,C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F,"CCCCCCCCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC,C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F",trihexyl(tetradecyl)phosphonium ,tris(pentafluoroethyl)trifluorophosphate,trihexyl(tetradecyl)phosphonium tris(pentafluoroethyl)trifluorophosphate
+0,CCCC[N+]1(CCCC1)C,C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F,"CCCC[N+]1(CCCC1)C,C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F",1-butyl-1-methylpyrrolidinium ,tris(pentafluoroethyl)trifluorophosphate,1-butyl-1-methylpyrrolidinium tris(pentafluoroethyl)trifluorophosphate
+,CCCC[N+]1(CCCC1)C,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,"CCCC[N+]1(CCCC1)CC,(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F",1-butyl-1-methylpyrrolidinium ,bis[(trifluoromethyl)sulfonyl]imide,1-butyl-1-methylpyrrolidinium b is[(trifluoromethyl)sulfonyl]imide
+,CCCCCCCCN1C=C[N+](=C1)C,[B-](F)(F)(F)F,"CCCCCCCCN1C=C[N+](=C1)C,[B-](F)(F)(F)F",1-methyl-3-octylimidazolium ,tetrafluoroborate,1-methyl-3-octylimidazolium tetrafluoroborate
+,CCCCCCN1C=C[N+](=C1)C,F[P-](F)(F)(F)(F)F,"CCCCCCN1C=C[N+](=C1)C,F[P-](F)(F)(F)(F)F",1-hexyl-3-methylimidazolium ,hexafluorophosphate,1-hexyl-3-methylimidazolium hexafluorophosphate
+,CN1C=C[N+](=C1)C,COS(=O)(=O)[O-],"CN1C=C[N+](=C1)C,COS(=O)(=O)[O-]","1,3-dimethylimidazolium ",methylsulfate,"1,3-dimethylimidazolium methylsulfate"
+,CCCC[N+]1=CC=CC(=C1)C,C(#N)[N-]C#N,"CCCC[N+]1=CC=CC(=C1)C,C(#N)[N-]C#N",1-butyl-3-methylpyridinium ,dicyanamide,1-butyl-3-methylpyridinium dicyanamide
+,CCCCCCN1C=C[N+](=C1)C,[B-](F)(F)(F)F,"CCCCCCN1C=C[N+](=C1)C,[B-](F)(F)(F)F",1-hexyl-3-methylimidazolium,tetrafluoroborate,1-hexyl-3-methylimidazolium tetrafluoroborate
+,CCCC[N+]1=CC=C(C=C1)C,[B-](F)(F)(F)F,"CCCC[N+]1=CC=C(C=C1)C,[B-](F)(F)(F)F",1-butyl-4-methylpyridinium ,tetrafluoroborate,1-butyl-4-methylpyridinium tetrafluoroborate
+,CCCC[N+]1=CC=CC=C1,[B-](F)(F)(F)F,"CCCC[N+]1=CC=CC=C1,[B-](F)(F)(F)F",1-butylpyridinium ,tetrafluoroborate,1-butylpyridinium tetrafluoroborate
+,CCCC[N+]1(CCCC1)C,C(F)(F)(F)S(=O)(=O)[O-],"CCCC[N+]1(CCCC1)C,C(F)(F)(F)S(=O)(=O)[O-]",1-butyl-1-methylpyrrolidinium ,trifluoromethanesulfonate,1-butyl-1-methylpyrrolidinium trifluoromethanesulfonate
+,CCCCCCCC[N+]1=CC=CC(=C1)C,[B-](F)(F)(F)F,"CCCCCCCC[N+]1=CC=CC(=C1)C,[B-](F)(F)(F)F",1-octyl-3-methylpyridinium ,tetrafluoroborate,1-octyl-3-methylpyridinium tetrafluoroborate
+,CCN1C=C[N+](=C1)C,CC1=CC=C(C=C1)S(=O)(=O)[O-],"CCN1C=C[N+](=C1)C,CC1=CC=C(C=C1)S(=O)(=O)[O-]",1-ethyl-3-methylimidazolium ,4-methylbenzenesulfonate,1-ethyl-3-methylimidazolium 4-methylbenzenesulfonate
