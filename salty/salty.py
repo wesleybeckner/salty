@@ -17,7 +17,7 @@ from sklearn.model_selection import cross_val_score
 from numpy.random import randint
 import numpy.linalg as LINA
 from sklearn.preprocessing import StandardScaler
-def checkName(user_query):
+def checkName(user_query, index=False):
     """
     checkName uses a database lookup to return either SMILES or IUPAC 
     names of salts given either one of those are provided as inputs.
@@ -36,7 +36,6 @@ def checkName(user_query):
         salt, cation, or anion (SMILES for the salt are written as the 
         cation and ion SMILES strings separated by a comma)
     """
-    
     ###Check to see that the database is present
     if os.path.isfile('../salty/data/saltInfo.csv') == False:
         print('database file missing... exiting')
@@ -47,6 +46,8 @@ def checkName(user_query):
         target_lookup = df.loc[(df == user_query).any(axis=1),:]
         input_type = df.loc[:,(df == user_query).any(axis=0)].columns.values
         target_column_index = df.columns.get_loc(input_type[0])
+        target_row_index = df.loc[(df == user_query).any(axis=1),:].index.tolist()[0]
+
     except:
         print("query %s not found" % target_lookup)
         return 0
@@ -59,8 +60,10 @@ def checkName(user_query):
         print("user has queried with a name")
         target = target_lookup.iloc[0][target_column_index-3]
     print("your query has returned %s" % target)
-    return target
-
+    if index:
+        return target, target_row_index
+    else:
+        return target
 def wesCVLasso(datadf, alpha_array=np.arange(1,0,-1e-2), wrapper=False, tol_lasso=1e-10, display=False,\
               cv=5):
     """
