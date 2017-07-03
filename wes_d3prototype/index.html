@@ -1,140 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
+
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1404.47">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #31a354; -webkit-text-stroke: #31a354}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #3182bd; -webkit-text-stroke: #3182bd}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #756bb1; -webkit-text-stroke: #756bb1}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #000000; -webkit-text-stroke: #000000}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #e6550d; -webkit-text-stroke: #e6550d}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #e6550d; -webkit-text-stroke: 0px #e6550d}
-    span.s3 {font-kerning: none; color: #756bb1; -webkit-text-stroke: 0px #756bb1}
-    span.s4 {font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
-    span.s5 {font-kerning: none; color: #3182bd; -webkit-text-stroke: 0px #3182bd}
-    span.s6 {font-kerning: none; color: #31a354; -webkit-text-stroke: 0px #31a354}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p2"><span class="s1">&lt;meta </span><span class="s2">charset</span><span class="s1">=</span><span class="s3">"utf-8"</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s1">&lt;style&gt;</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1">body</span><span class="s4"> {</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s2">font</span><span class="s4">:</span><span class="s1"> 10px sans-serif</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1">}</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1">.axis </span><span class="s5">path</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1">.axis </span><span class="s5">line</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s2">fill</span><span class="s4">:</span><span class="s1"> none</span><span class="s4">;</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">stroke</span><span class="s4">:</span><span class="s3"> #000</span><span class="s4">;</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">shape-rendering</span><span class="s4">:</span><span class="s3"> crispEdges</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1">}</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1">.dot {</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">stroke</span><span class="s4">:</span><span class="s3"> #000</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1">}</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1">&lt;/style&gt;</span></p>
-<p class="p2"><span class="s1">&lt;body&gt;</span></p>
-<p class="p4"><span class="s5">&lt;script </span><span class="s2">src</span><span class="s5">=</span><span class="s1">"//d3js.org/d3.v3.min.js"</span><span class="s5">&gt;&lt;/script&gt;</span></p>
-<p class="p2"><span class="s1">&lt;script&gt;</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> margin = {top: </span><span class="s6">20</span><span class="s1">, right: </span><span class="s6">20</span><span class="s1">, bottom: </span><span class="s6">30</span><span class="s1">, left: </span><span class="s6">40</span><span class="s1">},</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>width = </span><span class="s6">960</span><span class="s1"> - margin.left - margin.right,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>height = </span><span class="s6">500</span><span class="s1"> - margin.top - margin.bottom;</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> x = d3.scale.linear()</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.range([</span><span class="s6">0</span><span class="s1">, width]);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> y = d3.scale.linear()</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.range([height, </span><span class="s6">0</span><span class="s1">]);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> color = d3.scale.category10();</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> xAxis = d3.svg.axis()</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.scale(x)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.orient(</span><span class="s3">"bottom"</span><span class="s1">);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> yAxis = d3.svg.axis()</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.scale(y)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.orient(</span><span class="s3">"left"</span><span class="s1">);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s5">var</span><span class="s1"> svg = d3.select(</span><span class="s3">"body"</span><span class="s1">).append(</span><span class="s3">"svg"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.attr(</span><span class="s3">"width"</span><span class="s1">, width + margin.left + margin.right)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.attr(</span><span class="s3">"height"</span><span class="s1">, height + margin.top + margin.bottom)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>.append(</span><span class="s3">"g"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.attr(</span><span class="s3">"transform"</span><span class="s1">, </span><span class="s3">"translate("</span><span class="s1"> + margin.left + </span><span class="s3">","</span><span class="s1"> + margin.top + </span><span class="s3">")"</span><span class="s1">);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1">d3.tsv(</span><span class="s3">"data.tsv"</span><span class="s1">, </span><span class="s5">function</span><span class="s1">(error, data) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s5">if</span><span class="s1"> (error) </span><span class="s5">throw</span><span class="s1"> error;</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>data.forEach(</span><span class="s5">function</span><span class="s1">(d) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>d.sepalLength = +d.sepalLength;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>d.sepalWidth = +d.sepalWidth;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>});</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>x.domain(d3.extent(data, </span><span class="s5">function</span><span class="s1">(d) { </span><span class="s5">return</span><span class="s1"> d.sepalWidth; })).nice();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>y.domain(d3.extent(data, </span><span class="s5">function</span><span class="s1">(d) { </span><span class="s5">return</span><span class="s1"> d.sepalLength; })).nice();</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>svg.append(</span><span class="s3">"g"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"class"</span><span class="s1">, </span><span class="s3">"x axis"</span><span class="s1">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.attr(</span><span class="s1">"transform"</span><span class="s4">, </span><span class="s1">"translate(0,"</span><span class="s4"> + height + </span><span class="s1">")"</span><span class="s4">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.call(xAxis)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.append(</span><span class="s3">"text"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"class"</span><span class="s1">, </span><span class="s3">"label"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"x"</span><span class="s1">, width)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"y"</span><span class="s1">, -</span><span class="s6">6</span><span class="s1">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.style(</span><span class="s1">"text-anchor"</span><span class="s4">, </span><span class="s1">"end"</span><span class="s4">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.text(</span><span class="s1">"Sepal Width (cm)"</span><span class="s4">);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>svg.append(</span><span class="s3">"g"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"class"</span><span class="s1">, </span><span class="s3">"y axis"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.call(yAxis)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.append(</span><span class="s3">"text"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"class"</span><span class="s1">, </span><span class="s3">"label"</span><span class="s1">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.attr(</span><span class="s1">"transform"</span><span class="s4">, </span><span class="s1">"rotate(-90)"</span><span class="s4">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"y"</span><span class="s1">, </span><span class="s6">6</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"dy"</span><span class="s1">, </span><span class="s3">".71em"</span><span class="s1">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.style(</span><span class="s1">"text-anchor"</span><span class="s4">, </span><span class="s1">"end"</span><span class="s4">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.text(</span><span class="s1">"Sepal Length (cm)"</span><span class="s4">)</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>svg.selectAll(</span><span class="s3">".dot"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.data(data)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.enter().append(</span><span class="s3">"circle"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"class"</span><span class="s1">, </span><span class="s3">"dot"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"r"</span><span class="s1">, </span><span class="s6">3.5</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"cx"</span><span class="s1">, </span><span class="s5">function</span><span class="s1">(d) { </span><span class="s5">return</span><span class="s1"> x(d.sepalWidth); })</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"cy"</span><span class="s1">, </span><span class="s5">function</span><span class="s1">(d) { </span><span class="s5">return</span><span class="s1"> y(d.sepalLength); })</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.style(</span><span class="s3">"fill"</span><span class="s1">, </span><span class="s5">function</span><span class="s1">(d) { </span><span class="s5">return</span><span class="s1"> color(d.species); });</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s5">var</span><span class="s1"> legend = svg.selectAll(</span><span class="s3">".legend"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.data(color.domain())</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span>.enter().append(</span><span class="s3">"g"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"class"</span><span class="s1">, </span><span class="s3">"legend"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"transform"</span><span class="s1">, </span><span class="s5">function</span><span class="s1">(d, i) { </span><span class="s5">return</span><span class="s1"> </span><span class="s3">"translate(0,"</span><span class="s1"> + i * </span><span class="s6">20</span><span class="s1"> + </span><span class="s3">")"</span><span class="s1">; });</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>legend.append(</span><span class="s3">"rect"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"x"</span><span class="s1">, width - </span><span class="s6">18</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"width"</span><span class="s1">, </span><span class="s6">18</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"height"</span><span class="s1">, </span><span class="s6">18</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.style(</span><span class="s3">"fill"</span><span class="s1">, color);</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">  </span>legend.append(</span><span class="s3">"text"</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"x"</span><span class="s1">, width - </span><span class="s6">24</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"y"</span><span class="s1">, </span><span class="s6">9</span><span class="s1">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.attr(</span><span class="s3">"dy"</span><span class="s1">, </span><span class="s3">".35em"</span><span class="s1">)</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">      </span>.style(</span><span class="s1">"text-anchor"</span><span class="s4">, </span><span class="s1">"end"</span><span class="s4">)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">      </span>.text(</span><span class="s5">function</span><span class="s1">(d) { </span><span class="s5">return</span><span class="s1"> d; });</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p5"><span class="s1">});</span></p>
-<p class="p3"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1">&lt;/script&gt;</span></p>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Visualization</title>
+    <link rel="stylesheet" href="scatter.css" charset="utf-8">
+  </head>
+  <body>
+    <div id="scatter"></div>
+    
+    <input type="button" name="xAxis" value="xAxis">
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="scatter.js" charset="utf-8"></script>
+  </body>
 </html>
+
