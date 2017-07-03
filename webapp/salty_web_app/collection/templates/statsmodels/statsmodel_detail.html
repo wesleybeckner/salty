@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ statsmodel.name }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ statsmodel.name }}</h1>
+    <p>{{ statsmodel.description }}</p>
+    <a href="{% url 'edit_statsmodel' slug=statsmodel.slug %}">Edit me!</>
+{% endblock content %}

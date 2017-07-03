@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Contact - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>Contact page</h1>
+    <div class="contact">
+       <p>Wesley Beckner</p>
+       <img src="{% static 'images/wes.jpg' %}" alt="Wesley Beckner Picture"/>
+       <p>Yatong Ge</p>
+       <img src="{% static 'images/yatong.jpg' %}" alt="Yatong Ge Picture"/>
+    </div>
+{% endblock content %}

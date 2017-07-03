@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                Exploring Ionic Liquid
+            {% endblock title %}
+        </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        {% block header %}{% endblock header %}
+    </head>
+    <body>
+        <header>
+            <center><h1>Salty Project</h1><center>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about' %}">Background</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+             </nav>
+        </header> 
+        {% block content %}{% endblock content %}
+        {% block footer %}{% endblock footer %}
+    </body>
+</html>
