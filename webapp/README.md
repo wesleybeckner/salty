@@ -12,4 +12,5 @@ Instructions:
 
 Tips: 
 html templates are inside salty_web_app/collection/templates
+
 css files are inside salty_web_app/collection/static/css
