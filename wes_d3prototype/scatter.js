@@ -142,11 +142,26 @@ d3.csv("cereal.csv", function(data) {
       .attr("fill", color);
 
   legend.append("text")
-      .attr("x", width + 26)
+      .attr("x", width + 46)
       .attr("dy", ".35em")
       .text(function(d) { return d; });
 
+  d3.select("input").on("click", change2);
   d3.select("input").on("click", change);
+
+  function change2() {
+    xCat = "Pressure (kPa)";
+    xMax = d3.max(data, function(d) { return d[xCat]; });
+    xMin = d3.min(data, function(d) { return d[xCat]; });
+
+    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+
+    var svg = d3.select("#scatter").transition();
+
+    svg.select(".x.axis").duration(750).call(Density).select(".label").text(xCat);
+
+    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
+  }
 
   function change() {
     xCat = "Pressure (kPa)";
