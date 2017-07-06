@@ -1,7 +1,5 @@
-var rootContext = document.body.getAttribute("data-root");
-
-var margin = { top: 50, right: 300, bottom: 50, left: 50 },
-    outerWidth = 1050,
+var margin = { top: 50, right: 1000, bottom: 50, left: 50 },
+    outerWidth = 1500,
     outerHeight = 500,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;
