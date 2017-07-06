@@ -1,3 +1,5 @@
+var rootContext = document.body.getAttribute("data-root");
+
 var margin = { top: 50, right: 300, bottom: 50, left: 50 },
     outerWidth = 1050,
     outerHeight = 500,
@@ -15,7 +17,7 @@ var xCat = "Density (kg/m Experimental)",
     rCat = "Temperature (K)",
     colorCat = "Salt Name";
 
-d3.csv("cereal.csv", function(data) {
+d3.csv("../static/js/cereal.csv", function(data) {
   data.forEach(function(d) {
     d.Calories = +d.Calories;
     d.Carbs = +d.Carbs;
