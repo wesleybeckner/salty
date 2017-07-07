@@ -49,3 +49,9 @@ rect {
   top: 100%;
   left: 0;
 }
+#inds{
+  position:absolute;
+  top:10px;
+  left:10px;
+}
+

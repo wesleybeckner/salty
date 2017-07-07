@@ -17,18 +17,10 @@ var xCat = "Density (kg/m Experimental)",
 
 d3.csv("cereal.csv", function(data) {
   data.forEach(function(d) {
-    d.Calories = +d.Calories;
-    d.Carbs = +d.Carbs;
-    d["Cups per Serving"] = +d["Cups per Serving"];
-    d["Dietary Fiber"] = +d["Dietary Fiber"];
-    d["Display Shelf"] = +d["Display Shelf"];
-    d.Fat = +d.Fat;
-    d.Potassium = +d.Potassium;
-    d["Protein (g)"] = +d["Protein (g)"];
-    d["Serving Size Weight"] = +d["Serving Size Weight"];
-    d.Sodium = +d.Sodium;
-    d.Sugars = +d.Sugars;
-    d["Vitamins and Minerals"] = +d["Vitamins and Minerals"];
+    d["Density (kg/m Prediction)"] = +d["Density (kg/m Prediction)"];
+    d["Density (kg/m Experimental)"] = +d["Density (kg/m Experimental)"];
+    d["Temperature (K)"] = +d["Temperature (K)"];
+    d["Pressure (kPa)"] = +d["Pressure (kPa)"];
   });
 
   var xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.005,
@@ -146,25 +138,11 @@ d3.csv("cereal.csv", function(data) {
       .attr("dy", ".35em")
       .text(function(d) { return d; });
 
-  d3.select("input").on("click", change2);
-  d3.select("input").on("click", change);
-
-  function change2() {
-    xCat = "Pressure (kPa)";
-    xMax = d3.max(data, function(d) { return d[xCat]; });
-    xMin = d3.min(data, function(d) { return d[xCat]; });
-
-    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
-
-    var svg = d3.select("#scatter").transition();
-
-    svg.select(".x.axis").duration(750).call(Density).select(".label").text(xCat);
-
-    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
-  }
+  d3.select("#inds").on("change", change);
 
   function change() {
-    xCat = "Pressure (kPa)";
+    var sect = document.getElementById("inds");
+    xCat = sect.options[sect.selectedIndex].value;
     xMax = d3.max(data, function(d) { return d[xCat]; });
     xMin = d3.min(data, function(d) { return d[xCat]; });
 
