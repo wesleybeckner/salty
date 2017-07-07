@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}
-    Homepage - {{ block.super }}
+    LASSO Lars - {{ block.super }}
 {% endblock title %}
+    
 
 {% block content %}
-   <div class="dropdown">
-     <button class="dropbtn">Models</button>
-     <div class="dropdown-content"> 
-       <a href="{% url 'ann' %}">Artificial Neural Network</a>
-       <a href="{% url 'lasso' %}">LASSO Lars</a>
-       <a href="{% url 'svr' %}">Support Vector Regression</a>
-     </div>
-   </div>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Visualization</title>
+    <link rel="stylesheet" href="{% static 'css/scatter.css' %}" />
+  </head>
+  <body>
+    <div id="scatter"></div>
+    <select id="inds">
+      <option value="Density (kg/m Experimental)" selected="selected">Density (kg/m Experimental)</option>
+      <option value="Pressure (kPa)">Pressure (kPa)</option>
+      <option value="Temperature (K)">Temperature (K)</option>
+    </select>
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="{% static 'js/scatter.js' %}"></script>
+  </body>
+</html>
 {% endblock content %}

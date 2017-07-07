@@ -1,6 +1,6 @@
 body {
-    font-family: "Courier New", Monospace; 
-    background-color: lightblue
+    font-family: "Helvetica";
+    background-color: white
 }
 
 ul {
@@ -43,7 +43,7 @@ img {
 }
 
 .dropbtn {
-    font-family: "Courier New", Monospace;
+    font-family: "Helvetica";
     background-color: #4CAF50;
     color: white;
     padding: 16px 50px;
