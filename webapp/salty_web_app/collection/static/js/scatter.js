@@ -138,7 +138,10 @@ d3.csv("../static/js/cereal.csv", function(data) {
       .attr("dy", ".35em")
       .text(function(d) { return d; });
 
-  d3.select("#inds").on("change", change);
+  var lambdaOptions = ["Density (kg/m Experimental", "Pressure (kPa)", "Temperature (K)"];
+
+  svg.append("inds")
+  var select = d3.select("#inds").on("change", change);
 
   function change() {
     var sect = document.getElementById("inds");

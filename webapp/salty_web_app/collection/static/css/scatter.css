@@ -3,6 +3,11 @@ rect {
   shape-rendering: crispEdges;
 }
 
+svg {
+  display: block;
+  margin: 0 auto;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -49,9 +54,8 @@ rect {
   top: 100%;
   left: 0;
 }
-#inds{
-  position:absolute;
-  top:140px;
-  left:10px;
+.inds{
+  display: block;
+  margin: 0 auto;
 }
 
