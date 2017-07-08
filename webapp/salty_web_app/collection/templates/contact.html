@@ -6,10 +6,23 @@
 
 {% block content %}
     <h1>Contact page</h1>
-    <div class="contact">
-       <p>Wesley Beckner</p>
-       <img src="{% static 'images/wes.jpg' %}" alt="Wesley Beckner Picture"/>
-       <p>Yatong Ge</p>
-       <img src="{% static 'images/yatong.jpg' %}" alt="Yatong Ge Picture"/>
+    <div class="col-container">
+      <div class="col">
+        <h2>Wesley Beckner</h2>
+        <p>wesleybeckner@gmail.com</p>
+        <img src="{% static 'images/wes.jpg' %}" alt="Wesley Beckner Picture"/>
+      </div>
+
+      <div class="col"> 
+        <h2>Yatong Ge</h2>
+        <p>yatong2@uw.edu</p>
+        <img src="{% static 'images/yatong.jpg' %}" alt="Yatong Ge Picture"/>
+      </div>
+
+      <div class="col"> 
+        <h2>Miwako Ito</h2>
+        <p>ito.miwa@yahoo.com</p>
+        <img src="{% static 'images/miwa.jpg' %}" alt="Miwako Ito Picture"/>
+      </div>
     </div>
 {% endblock content %}
