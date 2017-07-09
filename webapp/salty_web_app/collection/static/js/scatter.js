@@ -112,13 +112,14 @@ d3.csv("../static/js/cereal.csv", function(data) {
       .attr("x2", 0)
       .attr("y2", height);
 
-  objects.selectAll(".dot")
+  var dot = objects.selectAll(".dot")
       .data(data)
     .enter().append("circle")
       .classed("dot", true)
       .attr("r", function (d) { return 6 * 0.1 * Math.sqrt(d[rCat] / Math.PI); })
       .attr("transform", transform)
       .style("fill", function(d) { return color(d[colorCat]); })
+      .attr("data-species", function(d) { return d[colorCat]; })
       .on("mouseover", tip.show)
       .on("mouseout", tip.hide);
 
@@ -131,7 +132,24 @@ d3.csv("../static/js/cereal.csv", function(data) {
   legend.append("circle")
       .attr("r", 3.5)
       .attr("cx", width + 20)
-      .attr("fill", color);
+      .attr("fill", color)
+      .on("click", function(d){
+      dot.filter(function () {
+		                 return this.dataset.species === d;
+				              })
+	               .transition().duration(750)
+		             .style("opacity", function () {
+				                     console.log(this.style.opacity);
+						                     return (parseInt(this.style.opacity)) ? 0 : 1;
+								                  });
+
+	        });
+        // Determine if the data point is visible
+//	var active =  test.active ? false : true,
+//	  newOpacity = active ? 0 : 1;
+//        d3.select("#test").style("opacity", newOpacity);
+//	// Update whether or not the elements are active
+//	test.active=active;
 
   legend.append("text")
       .attr("x", width + 46)
@@ -170,4 +188,3 @@ d3.csv("../static/js/cereal.csv", function(data) {
     return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
   }
 });
-
