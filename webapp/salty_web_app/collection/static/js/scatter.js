@@ -10,19 +10,27 @@ var x = d3.scale.linear()
 var y = d3.scale.linear()
     .range([height, 0]).nice();
 
-var xCat = "Density (kg/m Experimental)",
-    yCat = "Density (kg/m Prediction)",
+var xCat = "Prediction for alpha of 1.0",
+    yCat = "Density (kg/m Experimental)",
     rCat = "Temperature (K)",
     colorCat = "Salt Name";
 
-d3.csv("../static/js/cereal.csv", function(data) {
+d3.csv("../static/js/d3_web_data.csv", function(data) {
   data.forEach(function(d) {
-    d["Density (kg/m Prediction)"] = +d["Density (kg/m Prediction)"];
     d["Density (kg/m Experimental)"] = +d["Density (kg/m Experimental)"];
     d["Temperature (K)"] = +d["Temperature (K)"];
     d["Pressure (kPa)"] = +d["Pressure (kPa)"];
+    d["Prediction for alpha of 1.0"] = +d["Prediction for alpha of 1.0"];
+    d["Prediction for alpha of 0.9"] = +d["Prediction for alpha of 0.9"];
+    d["Prediction for alpha of 0.8"] = +d["Prediction for alpha of 0.8"];
+    d["Prediction for alpha of 0.7"] = +d["Prediction for alpha of 0.7"];
+    d["Prediction for alpha of 0.6"] = +d["Prediction for alpha of 0.6"];
+    d["Prediction for alpha of 0.5"] = +d["Prediction for alpha of 0.5"];
+    d["Prediction for alpha of 0.4"] = +d["Prediction for alpha of 0.4"];
+    d["Prediction for alpha of 0.3"] = +d["Prediction for alpha of 0.3"];
+    d["Prediction for alpha of 0.2"] = +d["Prediction for alpha of 0.2"];
+    d["Prediction for alpha of 0.1"] = +d["Prediction for alpha of 0.1"];
   });
-
   var xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.005,
       xMin = d3.min(data, function(d) { return d[xCat]; }),
       yMax = d3.max(data, function(d) { return d[yCat]; }) * 1.005,
@@ -47,7 +55,7 @@ d3.csv("../static/js/cereal.csv", function(data) {
       .attr("class", "d3-tip")
       .offset([-10, 0])
       .html(function(d) {
-        return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+        return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat] + "<br>" + colorCat + ": " + d[colorCat];
       });
 
   var zoomBeh = d3.behavior.zoom()
@@ -155,8 +163,6 @@ d3.csv("../static/js/cereal.csv", function(data) {
       .attr("x", width + 46)
       .attr("dy", ".35em")
       .text(function(d) { return d; });
-
-  var lambdaOptions = ["Density (kg/m Experimental", "Pressure (kPa)", "Temperature (K)"];
 
   svg.append("inds")
   var select = d3.select("#inds").on("change", change);
