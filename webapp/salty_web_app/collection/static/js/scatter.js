@@ -1,3 +1,15 @@
+$(function () {
+
+    // on page load, set the text of the label based the value of the range
+    $('#rangeText').text(rangeValues[$('#rangeInput').val()]);
+
+    // setup an event handler to set the text when the range value is dragged (see event for input) or changed (see event for change)
+    $('#rangeInput').on('input change', function () {
+        $('#rangeText').text(rangeValues[$(this).val()]);
+    });
+
+});
+
 var margin = { top: 50, right: 900, bottom: 50, left: 50 },
     outerWidth = 1400,
     outerHeight = 500,
@@ -20,7 +32,7 @@ d3.csv("../static/js/d3_web_data.csv", function(data) {
     d["Density (kg/m Experimental)"] = +d["Density (kg/m Experimental)"];
     d["Temperature (K)"] = +d["Temperature (K)"];
     d["Pressure (kPa)"] = +d["Pressure (kPa)"];
-    d["Prediction for alpha of 1.0"] = +d["Prediction for alpha of 1.0"];
+    d["Prediction for alpha of 1"] = +d["Prediction for alpha of 1.0"];
     d["Prediction for alpha of 0.9"] = +d["Prediction for alpha of 0.9"];
     d["Prediction for alpha of 0.8"] = +d["Prediction for alpha of 0.8"];
     d["Prediction for alpha of 0.7"] = +d["Prediction for alpha of 0.7"];
@@ -50,6 +62,7 @@ d3.csv("../static/js/d3_web_data.csv", function(data) {
       .tickSize(-width);
 
   var color = d3.scale.category10();
+
 
   var tip = d3.tip()
       .attr("class", "d3-tip")
@@ -99,6 +112,31 @@ d3.csv("../static/js/d3_web_data.csv", function(data) {
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text(yCat);
+
+//  var slider = svg.append("svg")
+//  var slider = d3.select("#scatter")
+//    .append("svg")
+//      .attr("width", outerWidth)
+//    .append("g")
+//      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+//    .append("g")
+//    .attr("class", "slider")
+//    .attr("width", width)
+//    .attr("height", height)
+//    .attr("transform", "translate(" + margin.left *10 + "," + margin.top * 5+ ")")
+
+//  slider.append("line")
+//    .attr("class", "track")
+//    .attr("x1", x.range()[0])
+//    .attr("x2", x.range()[1])
+//  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+//    .attr("class", "track-inset")
+//  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+//    .attr("class", "track-overlay")
+//    .call(d3.drag()
+//      .on("start.interrupt", function() { slider.interrupt(); })
+//      .on("start drag", function() { hue(x.invert(d3.event.x)); }));
 
   var objects = svg.append("svg")
       .classed("objects", true)
@@ -164,12 +202,17 @@ d3.csv("../static/js/d3_web_data.csv", function(data) {
       .attr("dy", ".35em")
       .text(function(d) { return d; });
 
-  svg.append("inds")
-  var select = d3.select("#inds").on("change", change);
+  svg.append("myRange")
+  var select = d3.select("#myRange").on("change", change2);
 
-  function change() {
-    var sect = document.getElementById("inds");
-    xCat = sect.options[sect.selectedIndex].value;
+//  svg.append("inds")
+//  var select = d3.select("#inds").on("change", change);
+
+  function change2() {
+    var sect_value = document.getElementById("myRange").value;
+    var sect = "Prediction for alpha of " + sect_value
+    console.log(sect)
+    xCat = sect;//options[sect.selectedIndex].value;
     xMax = d3.max(data, function(d) { return d[xCat]; });
     xMin = d3.min(data, function(d) { return d[xCat]; });
 
@@ -181,6 +224,23 @@ d3.csv("../static/js/d3_web_data.csv", function(data) {
 
     objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
   }
+
+//  function change() {
+//    var sect = document.getElementById("inds");
+//    console.log(sect)
+//    xCat = sect.options[sect.selectedIndex].value;
+//    console.log(xCat)
+//    xMax = d3.max(data, function(d) { return d[xCat]; });
+//    xMin = d3.min(data, function(d) { return d[xCat]; });
+//
+//    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+//
+//    var svg = d3.select("#scatter").transition();
+//
+//    svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
+//
+//    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
+//  }
 
   function zoom() {
     svg.select(".x.axis").call(xAxis);
