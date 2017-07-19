@@ -17,6 +17,59 @@ from sklearn.model_selection import cross_val_score
 from numpy.random import randint
 import numpy.linalg as LINA
 from sklearn.preprocessing import StandardScaler
+def compareAlphas(datadf, saltlist, target, alpha_array=np.arange(1,0,-1e-1), SSF=0.5, tol_boot=1e-6, MSSI=20, \
+                  tol_lasso=1e-10, wrapper=False, display=False):
+    """
+    hyperparameters are lambda (alpha), shuffle splitfraction (SSF), convergence critiera/allowance for(tol)
+    maximum shuffle split iterations (MSSI)
+    """
+   
+    data=np.array(datadf)
+     
+    print('Job will perform %s tests for lambda' % len(alpha_array))
+    lambda_test_MSE_averages=[]
+    n = data.shape[0]
+    d = data.shape[1]
+    d -= 1
+    n_train = int(n*SSF) #set fraction of data to be for training
+    n_test  = n - n_train
+    
+    X_train = np.zeros((n_train,d)) #prepare train/test arrays
+    X_test  = np.zeros((n_test,d))
+    Y_train = np.zeros((n_train))
+    Y_test = np.zeros((n_test))
+    X_train[:] = data[:n_train,:-1] #fill arrays according to train/test split
+    Y_train[:] = np.log(data[:n_train,-1].astype(float))
+    X_test[:] = data[n_train:,:-1]
+    Y_test[:] = np.log(data[n_train:,-1].astype(float))
+    
+    #initiate dataframe   
+    df = pd.DataFrame(np.log(datadf[target][n_train:].astype(float)))
+    df["Temperature (K)"]=datadf["Temperature_K"][n_train:]
+    df["Pressure (kPa)"]=datadf["Pressure_kPa"][n_train:]
+    df["Salt Name"]=saltlist[n_train:]
+    desSelected=[]
+
+    for j in range(len(alpha_array)):
+        
+        ###Train the LASSO model
+        model = Lasso(alpha=alpha_array[j],tol=tol_lasso,max_iter=2000)
+        model.fit(X_train,Y_train)
+        desSelected.append(model.coef_)
+        df["Prediction for alpha of %s" % alpha_array[j]] = model.predict(X_test)
+        
+        ###Calculate test set MSE
+        Y_hat =model.predict(X_test)
+        n = len(Y_test)
+        test_MSE = np.sum((Y_test-Y_hat)**2)**1/n
+        lambda_test_MSE_averages=[].append(test_MSE)
+        
+        if wrapper==False:
+            if (j+1/len(alpha_array)*10)%10 == 0:
+                print('Job %s' % str(j+1/len(alpha_array)*10), r'% complete' )
+    print('Job complete')
+    return df, alpha_array, desSelected, lambda_test_MSE_averages
+
 def checkName(user_query, index=False):
     """
     checkName uses a database lookup to return either SMILES or IUPAC 
