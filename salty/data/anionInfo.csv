@@ -2,15 +2,15 @@ anion,smiles
 tetrafluoroborate,[B-](F)(F)(F)F
 hexafluorophosphate,F[P-](F)(F)(F)(F)F
 tetracyanoborate,N#C[B-](C#N)(C#N)C#N
-bis(trifluoromethylsulfonyl)imide,C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-dicyanamide,C(#N)NC#N
+bis(trifluoromethylsulfonyl)imide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
+dicyanamide,C(#N)[N-]C#N
 trifluoromethanesulfonate,C(F)(F)(F)S(=O)(=O)[O-]
 methanesulfonate,CS(=O)(=O)[O-]
 tetrachloroferrate,Cl[Fe-](Cl)(Cl)Cl
 methylsulfate,COS(=O)(=O)[O-]
 triflate,C(F)(F)(F)S(=O)(=O)[O-]
 iodide,[I-]
-tricyanomethane,C(#N)C(C#N)C#N
+tricyanomethane,C(#N)[C-](C#N)C#N
 thiocyanate,C(#N)[S-]
 acetate,CC(=O)[O-]
 decanoate,CCCCCCCCCC(=O)[O-]
@@ -18,9 +18,9 @@ chloride,[Cl-]
 bromide,[Br-]
 "bis(2,4,4-trimethylpentyl)phosphinate",CC(CC(C)(C)C)CP(=O)(CC(C)CC(C)(C)C)[O-]
 tricyanomethanide,C(=C(C#N)C#N)=[N-]
-"1,1,1-trifluoro-N-[(trifluoromethyl)sulfonyl]methanesulfonamide",C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-bis(trifluoromethanesulfonyl)imide,C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-dimethylphosphate,COP(=O)(O)OC
+"1,1,1-trifluoro-N-[(trifluoromethyl)sulfonyl]methanesulfonamide",C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
+bis(trifluoromethanesulfonyl)imide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
+dimethylphosphate,COP(=O)([O-])OC
 pentanoate,CCCCC(=O)[O-]
 butanoate,CCCC(=O)[O-]
 propionate,CCC(=O)[O-]
@@ -29,16 +29,16 @@ diethylphosphate,CCOP(=O)([O-])OCC
 p-toluenesulfonate,Cc1ccc(cc1)S(=O)(=O)[O-]
 perchlorate,[O-]Cl(=O)(=O)=O
 dicyanoazanide,C(=[N-])=NC#N
-cyanocyanamide,C(#N)NC#N
+cyanocyanamide,C(#N)[N-]C#N
 oleate,CCCCCCCC/C=C\CCCCCCCC(=O)[O-]
 4-ethyloctanoate,CCCCC(CC)CCC(=O)[O-]
 4-nitroimidazolide,c1c(nc[n-]1)[N+](=O)[O-]
 4-nitropyrazolide,c1c(cn[n-]1)[N+](=O)[O-]
 2-hydroxy-3-morpholinopropanesulfonate,C1COCCN1CC(CS(=O)(=O)[O-])O
 2-(bis(2-hydroxyethyl)amino)ethanesulfonate,C(CO)N(CCO)CCS(=O)(=O)[O-]
-tetrazolide,C1NNNN1
+tetrazolide,c1nnn[n-]1
 "4,5-dicyanoimidazolide",c1[n-]c(c(n1)C#N)C#N
-"1,2,3-triazolide",c1[c]nn[nH]1
+"1,2,3-triazolide",c1cnn[n-]1
 nitrate,[N+](=O)([O-])[O-]
 hexanoate,CCCCCC(=O)[O-]
 hexylphosphonate,[O-]P(=O)([O-])CCCCCC
@@ -47,20 +47,20 @@ butylphosphonate,[O-]P([O-])(=O)CCCC
 octylphosphonate,O=P([O-])([O-])CCCCCCCC
 3-sulfobenzoate,c1cc(cc(c1)S(=O)(=O)[O-])C(=O)O
 benzenesulfonate,c1ccc(cc1)S(=O)(=O)[O-]
-"4,5-dichloroimidazolide",[c]1[nH]c(c(n1)Cl)Cl
+"4,5-dichloroimidazolide",c1[n-]c(c(n1)Cl)Cl
 glycinate,C(C(=O)[O-])N
 .beta.-alaninate,C(CN)C(=O)[O-]
 decylsulfate,CCCCCCCCCCOS(=O)(=O)[O-]
 "1,4-bis((2-ethylhexyl)oxy)-1,4-dioxobutane-2-sulfonate",CCCCC(CC)COC(=O)CC(C(=O)OCC(CC)CCCC)S(=O)(=O)[O-]
 "1,2,4-triazolide",c1[n-]cnn1
 trifluoroacetate,C(=O)(C(F)(F)F)[O-]
-2-cyanopyrrolide,c1cc([nH][c]1)C#N
+2-cyanopyrrolide,c1cc([n-]c1)C#N
 2-aminoethanesulfonate,C(CS(=O)(=O)[O-])N
 L-lysinate,C(CCN)C[C@@H](C(=O)[O-])N
 L-threoninate,C[C@H]([C@@H](C(=O)[O-])N)O
 L-cysteinate,C([C@@H](C(=O)[O-])N)S
 azide,[N-]=[N+]=[N-]
-"1,1,2,2-tetrafluoroethane-1-sulfonate",C(C(F)(F)S(=O)(=O)O)(F)F
+"1,1,2,2-tetrafluoroethane-1-sulfonate",C(C(F)(F)S(=O)(=O)[O-])(F)F
 salicylate,c1ccc(c(c1)C(=O)[O-])O
 L-valinate,CC(C)[C@@H](C(=O)[O-])N
 L-leucinate,CC(C)C[C@@H](C(=O)[O-])N
@@ -80,28 +80,28 @@ bis((trifluoromethyl)sulfonyl)amide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
 trifluorotris(perfluoroethyl)phosphate(V),C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F
 bis((trifluoromethyl)sulfonyl)imide,FC(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
 trifluoro(trifluoromethyl)borate,F[B-](F)(F)C(F)(F)F
-3-(cyclohexylamino)-2-hydroxypropanesulfonate,C1CCC(CC1)NCC(CS(=O)(=O)O)O
+3-(cyclohexylamino)-2-hydroxypropanesulfonate,C1CCC(CC1)NCC(CS(=O)(=O)[O-])O
 4-methylbenzenesulfonate,Cc1ccc(cc1)S(=O)(=O)[O-]
 L-alaninate,C[C@@H](C(=O)[O-])N
-ammonioacetate,C(C(=O)O)N
+ammonioacetate,C(C(=O)[O-])N
 taurinate,C(CS(=O)(=O)[O-])N
 L-serinate,C([C@@H](C(=O)[O-])N)O
 L-prolinate,C1C[C@H](NC1)C(=O)[O-]
 bis(fluorosulfonyl)amide,[N-](S(=O)(=O)F)S(=O)(=O)F
-bis(trifluoromethylsulfonyl),c1ccc(cc1)N(S(=O)(=O)C(F)(F)F)S(=O)(=O)C(F)(F)F
+bis(trifluoromethylsulfonyl)imide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
 bis(trifluoromethanesulfonyl)amide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
 ethylsulfate,CCOS(=O)(=O)[O-]
 tris(pentafluoroethyl)trifluorophosphate,C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F
 tetrafluoroborate,[B-](F)(F)(F)F
 hexafluorophosphate,F[P-](F)(F)(F)(F)F
 tetracyanoborate,N#C[B-](C#N)(C#N)C#N
-bis(trifluoromethylsulfonyl)imide,C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-dicyanamide,C(#N)NC#N
+bis(trifluoromethylsulfonyl)imide,C1=CC=C(C=C1)[O-]
+dicyanamide,C(#N)[N-]C#N
 trifluoromethanesulfonate,C(F)(F)(F)S(=O)(=O)[O-]
-bis[(trifluoromethyl)sulfonyl]imide,C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-bis(trifluromethylsulfonyl)imide,C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-bis[(trifluoromethyl)sulfonyl]amide,C(F)(F)(F)S(=O)(=O)NS(=O)(=O)C(F)(F)F
-di(dicyanamide),C(#N)NC#N
+bis[(trifluoromethyl)sulfonyl]imide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
+bis(trifluromethylsulfonyl)imide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
+bis[(trifluoromethyl)sulfonyl]amide,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
+di(dicyanamide),C(#N)[N-]C#N
 2-methyl-5-nitroimidazolide,CC1=NC=C(N1)[N+](=O)[O-]
 bis(fluorosulfonyl)imide,[N-](S(=O)(=O)F)S(=O)(=O)F
 bis(perfluoroethylsulfonyl)imide,C(C(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(C(F)(F)F)(F)F)(F)(F)F
@@ -109,8 +109,8 @@ bis(perfluoroethylsulfonyl)imide,C(C(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(C(F)(F)F)(F)F)
 "1,1,2-trifluoro-2-(trifluoromethoxy)ethanesulfonate",C(C(F)(F)S(=O)(=O)[O-])(OC(F)(F)F)F
 tosylate,CC1=CC=C(C=C1)S(=O)(=O)[O-]
 trifluoromethansulfate,C(F)(F)(F)S(=O)(=O)[O-]
-phenolate,C1=CC=C(C=C1)O
-isobutyrate,CC(C)C(=O)O
+phenolate,C1=CC=C(C=C1)[O-]
+isobutyrate,CC(C)C(=O)[O-]
 L-asparaginate,C([C@@H](C(=O)[O-])N)C(=O)N
 bis(trifluoromethylsulfonyl)imid,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
 taurate,C(CS(=O)(=O)[O-])N
@@ -120,16 +120,16 @@ hexyl sulfate,CCCCCCOS(=O)(=O)[O-]
 octyl sulfate,CCCCCCCCOS(=O)(=O)[O-]
 butyl sulfate,CCCCOS(=O)(=O)[O-]
 hydrogen sulfate,OS(=O)(=O)[O-]
-methyl sulfate,COS(=O)(=O)O
-butyl phosphonate,CCCCOP(=O)OCCCC
-ethyl phosphonate,CCO[P@@H](=O)OCC
-octyl phosphonate,CCCCCCCCOP(=O)OCCCCCCCC
+methyl sulfate,CO[P@@H](=O)[O-]
+butyl phosphonate,CCCCO[P@@H](=O)[O-]
+ethyl phosphonate,CCO[P@@H](=O)[O-]
+octyl phosphonate,CCCCCCCCOP(=O)[O-]
 hydrogen carbonate,C(=O)(O)[O-]
 dihydrogen phosphate,OP(=O)(O)[O-]
 dodecyl sulfate,CCCCCCCCCCCCOS(=O)(=O)[O-]
 2-hydroxypropanoate,CC(C(=O)[O-])O
-methyl phosphonate,CP(=O)(O)O
+methyl phosphonate,COP(=O)([O-])
 2-(2-methoxyethoxy)ethyl sulfate,COCCOCCOS(=O)(=O)[O-]
-"3-((1,3-dihydroxy-2-(hydroxymethyl)propan-2-yl)amino)-2-hydroxypropanesulfonate",C(C(CS(=O)(=O)O)O)NC(CO)(CO)CO
+"3-((1,3-dihydroxy-2-(hydroxymethyl)propan-2-yl)amino)-2-hydroxypropanesulfonate",C(C(CS(=O)(=O)[O-])O)NC(CO)(CO)CO
 "2,2,2-trifluoroacetate",C(=O)(C(F)(F)F)[O-]
-"1,1,2,3,3,3-hexafluoro-1-propanesulfonate",C(C(F)(F)F)(C(F)(F)S(=O)(=O)O)F
+"1,1,2,3,3,3-hexafluoro-1-propanesulfonate",C(C(F)(F)F)(C(F)(F)S(=O)(=O)[O-])F
