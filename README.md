@@ -1,5 +1,7 @@
-# salty
-An interactive data exploration tool for json structured ionic liquid data from ILThermo (NIST)
+## salty
+[![Build Status](https://travis-ci.org/wesleybeckner/salty.svg?branch=master)](https://travis-ci.org/wesleybeckner/salty)
+========
+Salty is an interactive data exploration tool for ionic liquid data from ILThermo (NIST)
 
 # development notes
 
