@@ -1,18 +1,13 @@
 from __future__ import absolute_import, division, print_function
 import salty
 from rdkit.Chem import AllChem as Chem
-from rdkit.ML.Descriptors.MoleculeDescriptors import\
-    MolecularDescriptorCalculator as calculator
-import numpy as np
 import unittest
 import datetime
-from math import exp
-import random
 
 
 class check_data_tests(unittest.TestCase):
     data_files = ["cationInfo.csv", "anionInfo.csv"]
-    
+
     def test_1_check_data(self):
         for i in range(len(self.data_files)):
             df = salty.load_data(self.data_files[i])
@@ -32,9 +27,10 @@ class check_data_tests(unittest.TestCase):
             ion = smiles[i]
             try:
                 Chem.SanitizeMol(Chem.MolFromSmiles(ion))
-            except ArgumentError:
+            except ValueError:
                 name = salty.checkName(ion)
-                message = "RDKit cannot interpret %s ion SMILES in datafile" % name
+                message = "RDKit cannot interpret %s ion SMILES in datafile" \
+                          % name
                 fnDisplay(message)
             if "-" not in ion and "+" not in ion:
                 name = salty.checkName(ion)
@@ -42,7 +38,8 @@ class check_data_tests(unittest.TestCase):
                 fnDisplay(message)
             if "." in ion:
                 name = salty.checkName(ion)
-                message = "%s ion contains more than one molecular entity" % name
+                message = "%s ion contains more than one molecular entity" \
+                          % name
                 fnDisplay(message)
 
 

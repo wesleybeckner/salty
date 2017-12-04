@@ -26,7 +26,8 @@ CLASSIFIERS = ["Development Status :: 2 - Pre-Alpha",
                "Topic :: Scientific/Engineering :: Information Analysis"]
 
 # Description should be a one-liner:
-description = "An interactive data exploration tool for json structured ionic liquid data from ILThermo (NIST)"
+description = "An interactive data exploration tool for json structured ionic\
+        liquid data from ILThermo (NIST)"
 # Long description will go up on the pypi page
 long_description = """
 

@@ -5,21 +5,22 @@ from os.path import dirname, join
 import pandas as pd
 import os
 import sys
-import matplotlib.pylab as plt
-import numpy as np
-import itertools as it
-from scipy.stats import uniform as sp_rand
-from scipy.stats import mode
-from sklearn.linear_model import LassoLarsIC
-from sklearn.linear_model import Lasso
-from sklearn.svm import SVR
-from sklearn.neural_network import MLPRegressor
-from sklearn import preprocessing
-from sklearn.model_selection import RandomizedSearchCV
-from sklearn.model_selection import cross_val_score
-from numpy.random import randint
-import numpy.linalg as LINA
-from sklearn.preprocessing import StandardScaler
+import pickle
+# import matplotlib.pylab as plt
+# import numpy as np
+# import itertools as it
+# from scipy.stats import uniform as sp_rand
+# from scipy.stats import mode
+# from sklearn.linear_model import LassoLarsIC
+# from sklearn.linear_model import Lasso
+# from sklearn.svm import SVR
+# from sklearn.neural_network import MLPRegressor
+# from sklearn import preprocessing
+# from sklearn.model_selection import RandomizedSearchCV
+# from sklearn.model_selection import cross_val_score
+# from numpy.random import randint
+# import numpy.linalg as LINA
+# from sklearn.preprocessing import StandardScaler
 __all__ = ["load_data", "suppress_stdout_stderr", "Benchmark", "check_name"]
 
 
@@ -30,52 +31,52 @@ Salty is a toolkit for interacting with ionic liquid data from ILThermo
 
 def check_name(user_query, index=False):
     """
-    checkName uses a database to return either SMILES or IUPAC 
+    checkName uses a database to return either SMILES or IUPAC
     names of cations/anions.
 
     Default behavior is to return the SMILES encoding of an ion given
     the ion name as input.
-    
+
     Parameters
     ------------------
     user_query : str
         string that will be used to query the database.
-        
+
     Returns
     ------------------
     output: str
         either the name of the salt, cation, or anion; or SMILES of the
-        salt, cation, or anion (SMILES for the salt are written as the 
+        salt, cation, or anion (SMILES for the salt are written as the
         cation and ion SMILES strings separated by a comma)
     """
-    ###Check to see that the database is present
     df_cation = load_data("cationInfo.csv")
     df_anion = load_data("anionInfo.csv")
-    
+
     def _look_up_info_file(df):
-        target_lookup = df.loc[(df == user_query).any(axis=1),:]
-        input_type = df.loc[:,(df == user_query).any(axis=0)].columns.values
+        target_lookup = df.loc[(df == user_query).any(axis=1), :]
+        input_type = df.loc[:, (df == user_query).any(axis=0)].columns.values
         column_index = df.columns.get_loc(input_type[0])
-        row_index = df.loc[(df == user_query).any(axis=1),:].index.tolist()[0]
+        row_index = df.loc[(df == user_query).any(axis=1), :].index.tolist()[0]
         return target_lookup, input_type, column_index, row_index
-    
+
     try:
-        target_lookup, input_type, column_index, row_index = _look_up_info_file(df_cation)
-    except:
+        target_lookup, input_type, column_index, row_index =\
+            _look_up_info_file(df_cation)
+    except BaseException:
         try:
-            target_lookup, input_type, column_index, row_index = _look_up_info_file(df_anion)
-        except:
+            target_lookup, input_type, column_index, row_index = \
+                _look_up_info_file(df_anion)
+        except BaseException:
             print("query %s not found" % target_lookup)
             return 0
     if column_index == 1:
-        target = target_lookup.iloc[0][column_index-1]
+        target = target_lookup.iloc[0][column_index - 1]
     else:
-        target = target_lookup.iloc[0][column_index+1]
+        target = target_lookup.iloc[0][column_index + 1]
     if index:
         return target, row_index
     else:
         return target
-
 
 
 def load_data(data_file_name, pickleFile=False, simpleList=False):
@@ -151,5 +152,3 @@ class Benchmark:
             print("{} {:3.2f} {:3.2f}".format(
                 1 + i, mean,
                 statistics.stdev(timings, mean) if i > 1 else 0))
-
-
