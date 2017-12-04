@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from os.path import join as pjoin
 
 # Format expected by setup.py and doc/source/conf.py: string of form "X.Y.Z"
@@ -28,12 +29,13 @@ CLASSIFIERS = ["Development Status :: 2 - Pre-Alpha",
 description = "An interactive data exploration tool for json structured ionic liquid data from ILThermo (NIST)"
 # Long description will go up on the pypi page
 long_description = """
+
 salty
 ========
-Long description here.
 To get started using these components in your own software, please go to the
 repository README_.
 .. _README: https://github.com/wesleybeckner/afm-miner/README.md
+
 License
 =======
 ``salty`` is licensed under the terms of the MIT license. See the file
@@ -44,7 +46,7 @@ Copyright (c) 2015--, Wesley Beckner, The University of Washington
 eScience Institute.
 """
 
-NAME = "salty"
+NAME = "salty-ilthermo"
 MAINTAINER = "Wesley Beckner"
 MAINTAINER_EMAIL = "wesleybeckner@gmail.com"
 DESCRIPTION = description
@@ -59,5 +61,5 @@ MAJOR = _version_major
 MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
-PACKAGE_DATA = {'afmMiner': [pjoin('data', '*')]}
+PACKAGE_DATA = {'salty': [pjoin('data', '*')]}
 REQUIRES = ["numpy"]

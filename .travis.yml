@@ -1,0 +1,38 @@
+language: python
+sudo: false
+deploy:
+  provider: pypi
+  user: wesleybeckner
+  password:
+      secure: "evImOazPPzmMMl0nLsC9JBUVc1KSmkpbDgs+1luZuv4Tl43HbhdpTi9l11SKO21gz3aKIjFL3Di/kpZEU8niYn9wlaZ9lspl6HtHL9qoYb7hqGY1EA27saFqWOveW9I/HGBvDahIJivwIWfMztGJy11s6NVf/RI9kuwVdzyCmLpY5BkAbfxieSm+pGc5ubuUfBvRFTKZm6Lzub9rZBcFUaLQ6VbJMsWsM23J0CVDuP/4D+GqTLtcMEKh/fSFvE4XA/6nX/uniMCaJd4SiqKjh6RU58KA8fxXXvjIex/p3zd27RpcleOJwX25wmUGZ+xRKyopSA5P9F9ZAoRB+LBj1GY2af3WE+BXOZV3iL4vo21q+Sj8Bv17SP8HIdUIxAmAis90GFKl5ozZS8crRtcOyLoyjLoisi8OtIWtt9SE2da0EjTs07J3fnqKt8nR4Ssbk8rG9F/p83VsIVMbnrH3PPtnpDERlBb66BP+ghyebiRqLvXePrm8ax7KO7RwI97dGS2I1wGF6+mSOtATJApiCtAVOMIB8Phw0V3Q0WFowYYbUSB8jbUEeajIO/UyaIk/+ZaIriYPbEv3yaEwSI6KZkklJ1a/2JLttI1AtZq4msrJp24ipIC2OMozLpQ33bzqH22Cks3+RaKs9IsqJFHYqMRJnRojzmLBDjnQ1Af/qWo="
+  on:
+    tags: true
+    repo: wesleybeckner/gains
+env:
+  global:
+  - PIP_DEPS="pytest coveralls pytest-cov flake8"
+python:
+- '3.6'
+install:
+- sudo apt-get update
+- if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+  -O miniconda.sh; else wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; fi
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda update -q conda
+- conda info -a
+- conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+- source activate test-environment
+- conda install -c rdkit rdkit
+- conda install -c scikit-learn scikit-learn
+- travis_retry pip install $PIP_DEPS
+- travis_retry pip install -r requirements.txt
+- travis_retry pip install -e .
+script:
+- flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/`
+- py.test
+after_success:
+- coveralls
