@@ -1,5 +1,6 @@
 ## SALTY
 [![Build Status](https://travis-ci.org/wesleybeckner/salty.svg?branch=master)](https://travis-ci.org/wesleybeckner/salty)
+[![PyPI version](https://badge.fury.io/py/salty-ilthermo.svg)](https://badge.fury.io/py/salty-ilthermo)
 ========
 Salty is an interactive data exploration tool for ionic liquid data from ILThermo (NIST)
 
