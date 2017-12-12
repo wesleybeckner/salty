@@ -1,4 +1,4 @@
-"Molar volume, m<SUP>3</SUP>/mol","Pressure, kPa","Specific density, kg/m<SUP>3</SUP>","Specific volume, m<SUP>3</SUP>/kg","Temperature, K",salt_name,cation_name,anion_name,cation_SMILES,anion_SMILES,salt_SMILES
+"Molar volume, m<SUP>3</SUP>/mol","Pressure, kPa","Specific density, kg/m<SUP>3</SUP>","Specific volume, m<SUP>3</SUP>/kg","Temperature, K",salt_name,name-cation,name-anion,cation_SMILES,anion_SMILES,salt_SMILES
 ,101.325,1518.9,,298.15,1-ethyl-3-methylimidazolium bis[(trifluoromethyl)sulfonyl]imide,1-ethyl-3-methylimidazolium,bis[(trifluoromethyl)sulfonyl]imide,CCN1C=C[N+](=C1)C,C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F,CCN1C=C[N+](=C1)C C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F
 ,101.325,891.8,,298.15,trihexyl(tetradecyl)phosphonium chloride,trihexyl(tetradecyl)phosphonium,chloride,CCCCCCCCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC,[Cl-],CCCCCCCCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC [Cl-]
 ,101.325,1102.0,,298.15,1-methyl-3-octylimidazolium tetrafluoroborate,1-methyl-3-octylimidazolium,tetrafluoroborate,CCCCCCCC[N+]1=CN(C=C1)C,[B-](F)(F)(F)F,CCCCCCCC[N+]1=CN(C=C1)C [B-](F)(F)(F)F

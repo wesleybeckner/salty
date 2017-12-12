@@ -29,6 +29,12 @@ Salty is a toolkit for interacting with ionic liquid data from ILThermo
 """
 
 
+class dev_model():
+    def __init__(self, coef_data, data):
+        self.Coef_data = coef_data
+        self.Data = data
+
+
 def check_name(user_query, index=False):
     """
     checkName uses a database to return either SMILES or IUPAC
