@@ -153,6 +153,7 @@ triethyloctylphosphonium,[P+](CC)(CC)(CC)CCCCCCCC
 decyltriethylphosphonium,[P+](CC)(CC)(CC)CCCCCCCCCC
 triethylnonylphosphonium,[P+](CC)(CC)(CC)CCCCCCCCC
 trihexyl(tetradecyl)phosphonium,C(CCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC)CCCCC
+trihexyl(tetradecyl)-phosphonium,C(CCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC)CCCCC
 1-methyl-3-octylimidazolium,CCCCCCCCn1cc[n+](c1)C
 1-butyl-3-methylimidazolium,CCCCn1cc[n+](c1)C
 1-ethyl-3-methylimidazolium,CCn1cc[n+](c1)C
@@ -174,6 +175,7 @@ tetradecyl(trihexyl)phosphonium,C(CCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC)CCCCC
 3-methyl-1-propylpyridinium,CCC[n+]1cccc(c1)C
 "1,3-dipropyl-1H-imidazol-3-ium",c1c[n+](cn1CCC)CCC
 1-methyl-3-pentylimidazolium,c1c[n+](cn1CCCCC)C
+1-methyl-3-pentyl-imidazolium,c1c[n+](cn1CCCCC)C
 "1,3-dinonyl-1H-imidazol-3-ium",c1c[n+](cn1CCCCCCCCC)CCCCCCCCC
 1-heptyl-3-methylimidazolium,c1c[n+](cn1CCCCCCC)C
 1-methyl-3-nonylimidazolium,c1c[n+](cn1CCCCCCCCC)C
@@ -298,3 +300,17 @@ triethylhexylammonium,[P+](CC)(CC)(CC)(CCCCCC)
 "1,3-dipentyl-1H-imidazol-3-ium",C1=C[N+](CCCCC)=CN1CCCCC
 "1,3-dibutyl-1H-imidazolium",C1=C[N+](CCC)=CN1CCC
 1-(2-azido-3-bromopropyl)-3-methyl-3H-imidazol-1-ium,C1=C[N+](CC(CBr)N=[N+]=[N-])=CN1C
+1-methylimidazolium,n1cc[nH+](c1)C
+N,N,N-triethyl-N-hexylammonium,CC[N+](CC)(CC)CCCCCC
+N,N,N-triethyl-N-octylammonium,CC[N+](CC)(CC)CCCCCCCC
+tetraethylammonium,CC[N+](CC)(CC)CC
+1-(2-hydroxyethyl)-2,3-dimethylimidazolium,Cn1cc[n+](c1C)CCO
+hexyl(2-hydroxyethyl)dimethylammonium,OCC[N+](C)(C)CCCCCC
+N-methylpyrrolidone,C[NH+]1C(CCC1)=O
+1-hexyloxymethyl-3-methylimidazolium,Cn1cc[n+](c1)COCCCCCC
+3-(2-aminoethyl)-1-methyl-1H-imidazolium,Cn1cc[n+](c1)CCN
+3-(3-aminopropyl)-1-methyl-1H-imidazoliun,Cn1cc[n+](c1)CCCN
+1-(3-aminopropyl)-3-methyl-1H-imidazoliun,NCCCn1cc[n+](c1)C
+1-methyl-3-propylpyridinium,C[n+]1cc(CCC)c(cc1)
+1-decyl-3-methyl-1H-imidazolium,Cn1cc[n+](c1)CCCCCCCCCC
+4-decyl-4-methylmorpholinium,CCCCCCCCCC[N+]1(C)CCOCC1
