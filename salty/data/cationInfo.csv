@@ -301,10 +301,10 @@ triethylhexylammonium,[P+](CC)(CC)(CC)(CCCCCC)
 "1,3-dibutyl-1H-imidazolium",C1=C[N+](CCC)=CN1CCC
 1-(2-azido-3-bromopropyl)-3-methyl-3H-imidazol-1-ium,C1=C[N+](CC(CBr)N=[N+]=[N-])=CN1C
 1-methylimidazolium,n1cc[nH+](c1)C
-N,N,N-triethyl-N-hexylammonium,CC[N+](CC)(CC)CCCCCC
-N,N,N-triethyl-N-octylammonium,CC[N+](CC)(CC)CCCCCCCC
+"N,N,N-triethyl-N-hexylammonium",CC[N+](CC)(CC)CCCCCC
+"N,N,N-triethyl-N-octylammonium",CC[N+](CC)(CC)CCCCCCCC
 tetraethylammonium,CC[N+](CC)(CC)CC
-1-(2-hydroxyethyl)-2,3-dimethylimidazolium,Cn1cc[n+](c1C)CCO
+"1-(2-hydroxyethyl)-2,3-dimethylimidazolium",Cn1cc[n+](c1C)CCO
 hexyl(2-hydroxyethyl)dimethylammonium,OCC[N+](C)(C)CCCCCC
 N-methylpyrrolidone,C[NH+]1C(CCC1)=O
 1-hexyloxymethyl-3-methylimidazolium,Cn1cc[n+](c1)COCCCCCC
