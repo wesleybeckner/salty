@@ -309,8 +309,9 @@ hexyl(2-hydroxyethyl)dimethylammonium,OCC[N+](C)(C)CCCCCC
 N-methylpyrrolidone,C[NH+]1C(CCC1)=O
 1-hexyloxymethyl-3-methylimidazolium,Cn1cc[n+](c1)COCCCCCC
 3-(2-aminoethyl)-1-methyl-1H-imidazolium,Cn1cc[n+](c1)CCN
-3-(3-aminopropyl)-1-methyl-1H-imidazoliun,Cn1cc[n+](c1)CCCN
-1-(3-aminopropyl)-3-methyl-1H-imidazoliun,NCCCn1cc[n+](c1)C
+3-(3-aminopropyl)-1-methyl-1H-imidazolium,Cn1cc[n+](c1)CCCN
+1-(3-aminopropyl)-3-methyl-1H-imidazolium,NCCCn1cc[n+](c1)C
 1-methyl-3-propylpyridinium,C[n+]1cc(CCC)c(cc1)
 1-decyl-3-methyl-1H-imidazolium,Cn1cc[n+](c1)CCCCCCCCCC
 4-decyl-4-methylmorpholinium,CCCCCCCCCC[N+]1(C)CCOCC1
+3-(3-aminopropyl)-1-methyl-1H-imidazolium,NCCC[n+]1cc[n](c1)C
