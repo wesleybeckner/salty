@@ -1,0 +1,29 @@
+,0
+Unique salts,453
+Total datapoints,3307
+Temperature range,290.15 - 314.3 K
+Pressure range,100.7 - 160.0 kPa
+Viscosity range,0.001705 - 0.999 Pas
+activation,tanh
+alpha,0.6579559141197934
+batch_size,auto
+beta_1,0.9
+beta_2,0.999
+early_stopping,False
+epsilon,1e-08
+hidden_layer_sizes,25
+learning_rate,invscaling
+learning_rate_init,0.001
+max_iter,100000
+momentum,0.9
+nesterovs_momentum,True
+power_t,0.5
+random_state,
+shuffle,True
+solver,lbfgs
+tol,1e-08
+validation_fraction,0.1
+verbose,False
+warm_start,False
+train score,0.9919937602781238
+test score,0.9751723518750537
