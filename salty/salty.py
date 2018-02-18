@@ -73,7 +73,7 @@ def check_name(user_query, index=False):
             target_lookup, input_type, column_index, row_index = \
                 _look_up_info_file(df_anion)
         except BaseException:
-            print("query %s not found" % target_lookup)
+            print("query not found")
             return 0
     if column_index == 1:
         target = target_lookup.iloc[0][column_index - 1]
