@@ -6,6 +6,7 @@ import pandas as pd
 import os
 import sys
 import pickle
+import dill
 # import matplotlib.pylab as plt
 # import numpy as np
 # import itertools as it
@@ -21,7 +22,8 @@ import pickle
 # from numpy.random import randint
 # import numpy.linalg as LINA
 # from sklearn.preprocessing import StandardScaler
-__all__ = ["load_data", "suppress_stdout_stderr", "Benchmark", "check_name"]
+__all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
+           "check_name", "dev_model", "load_model"]
 
 
 """
@@ -30,9 +32,27 @@ Salty is a toolkit for interacting with ionic liquid data from ILThermo
 
 
 class dev_model():
-    def __init__(self, coef_data, data):
+    def __init__(self, coef_data, data_summary, data):
         self.Coef_data = coef_data
+        self.Data_summary = data_summary
         self.Data = data
+
+
+def load_model(data_file_name):
+    """Loads data from module_path/data/MODELS/data_file_name.
+    Parameters
+    ----------
+    data_file_name : String. Name of dill file to be loaded from
+    module_path/data/data_file_name. For example 'density_devmodel.pkl'.
+    Returns
+    -------
+    data : dev_model object
+    """
+    module_path = dirname(__file__)
+    with open(join(module_path, 'data/MODELS', data_file_name), 'rb') as \
+            pickle_file:
+        data = dill.load(pickle_file)
+    return data
 
 
 def check_name(user_query, index=False):
