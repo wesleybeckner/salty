@@ -69,5 +69,5 @@ estimator,"MLPRegressor(activation='logistic', alpha=0.92078, batch_size='auto',
        shuffle=True, solver='lbfgs', tol=1e-08, validation_fraction=0.1,
        verbose=False, warm_start=False)"
 n_jobs,1
-train score,0.9976444155030892
-test score,0.9988274370040391
+train score,0.9907349031310982
+test score,0.9899810752033467
