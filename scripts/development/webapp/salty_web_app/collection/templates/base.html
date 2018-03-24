@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                Exploring Ionic Liquid
+            {% endblock title %}
+        </title>
+        <link rel="javascript" href="{% static 'js/scatter.js' %}" />
+        <link rel="stylesheet" href="{% static 'css/scatter.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	<body data-root="${rootContext}">
+        {% block header %}{% endblock header %}
+    </head>
+    <body>
+        <header>
+            <center><h1>Salty Project</h1><center>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">View the Model</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about' %}">About the data</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact' %}">Meet the Authors</a>
+                    </li>
+                </ul>
+             </nav>
+        </header> 
+        {% block content %}{% endblock content %}
+        {% block footer %}{% endblock footer %}
+    </body>
+</html>

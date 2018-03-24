@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    LASSO Lars - {{ block.super }}
+{% endblock title %}
+    
+
+{% block content %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Visualization</title>
+    <link rel="stylesheet" href="{% static 'css/scatter.css' %}" />
+  </head>
+  <body>
+<!--    <select id="inds">
+      <option value="Prediction for alpha of 1.0" selected="selected">Prediction for alpha of 1.0</option>
+      <option value="Prediction for alpha of 0.9">Prediction for alpha of 0.9</option>
+      <option value="Prediction for alpha of 0.8">Prediction for alpha of 0.8</option>
+      <option value="Prediction for alpha of 0.7">Prediction for alpha of 0.7</option>
+      <option value="Prediction for alpha of 0.6">Prediction for alpha of 0.6</option>
+      <option value="Prediction for alpha of 0.5">Prediction for alpha of 0.5</option>
+      <option value="Prediction for alpha of 0.4">Prediction for alpha of 0.4</option>
+      <option value="Prediction for alpha of 0.3">Prediction for alpha of 0.3</option>
+      <option value="Prediction for alpha of 0.2">Prediction for alpha of 0.2</option>
+      <option value="Prediction for alpha of 0.1">Prediction for alpha of 0.1</option>
+    </select>-->
+    <div id="scatter"></div>
+    <input type="range" id="myRange" min="0.1" max="1.0" value="0.1" step="0.1"/>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="{% static 'js/scatter.js' %}"></script>
+    <script src="{% static 'js/html5-dataset.js' %}"</script>
+  </body>
+</html>
+{% endblock content %}

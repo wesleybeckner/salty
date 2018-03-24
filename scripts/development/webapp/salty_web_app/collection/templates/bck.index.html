@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    Homepage - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+   <div class="dropdown">
+     <button class="dropbtn">Models</button>
+     <div class="dropdown-content"> 
+       <a href="{% url 'ann' %}">Artificial Neural Network</a>
+       <a href="{% url 'lasso' %}">LASSO Lars</a>
+       <a href="{% url 'svr' %}">Support Vector Regression</a>
+     </div>
+   </div>
+{% endblock content %}
