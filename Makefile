@@ -1,7 +1,7 @@
 flake8:
 	@if command -v flake8 > /dev/null; then \
 		echo "Running flake8"; \
-		flake8 flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/ | grep -v /scripts/ | grep -v /webapp/`; \
+		flake8 flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/ | grep -v /scripts/ | grep -v /webapp/ | grep -v /docs/`; \
 	else \
 		echo "flake8 not found, please install it!"; \
 		exit 1; \

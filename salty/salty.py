@@ -27,8 +27,8 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 # __all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
 #            "check_name", "dev_model", "load_model", "aggregate_data"]
-# 
-# 
+#
+#
 # """
 # Salty is a toolkit for interacting with ionic liquid data from ILThermo
 # """
@@ -42,7 +42,7 @@ class dev_model():
 
 
 def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
-                   merge="overlap", feature_type=None):
+                   merge="overlap", feature_type=None, impute=False):
     """
     Aggregates molecular data for model training
 
@@ -67,8 +67,7 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
         returns dev_model object containing scale/center information,
         data summary, and the data frame
     """
-def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
-                   merge="overlap", feature_type=None, impute=False):
+
     data_files = []
     for i, string in enumerate(data):
         data_files.append(load_data("MODELS/%s_premodel.csv" % string))
@@ -86,23 +85,22 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
     merged = merged.loc[merged["Temperature, K"] > T[0]]
     merged = merged.loc[merged["Pressure, kPa"] < P[1]]
     merged = merged.loc[merged["Pressure, kPa"] > P[0]]
-    for i in range(1,len(data)+1):
-        merged = merged[merged.iloc[:,-i] != 0] #avoid log(0) error
+    for i in range(1, len(data) + 1):
+        merged = merged[merged.iloc[:, -i] != 0]  # avoid log(0) error
         if data_ranges:
-            merged = merged[merged.iloc[:,-i] < data_ranges[::-1][i-1][1]]
-            merged = merged[merged.iloc[:,-i] > data_ranges[::-1][i-1][0]]
+            merged = merged[merged.iloc[:, -i] < data_ranges[::-1][i - 1][1]]
+            merged = merged[merged.iloc[:, -i] > data_ranges[::-1][i - 1][0]]
     merged.reset_index(drop=True, inplace=True)
     # Create summary of dataset
     unique_salts = merged["smiles-cation"] + merged["smiles-anion"]
     unique_cations = repr(merged["smiles-cation"].unique())
     unique_anions = repr(merged["smiles-anion"].unique())
     actual_data_ranges = []
-    for i in range(1,len(data)+3):
-        actual_data_ranges.append("{} - {}".format(str(merged.iloc[:,-i].min())
-                                                   ,str(merged.iloc[:,-i].max()
-                                                        )))
+    for i in range(1, len(data) + 3):
+        actual_data_ranges.append("{} - {}".format(
+            str(merged.iloc[:, -i].min()), str(merged.iloc[:, -i].max())))
     a = np.array([len(unique_salts.unique()), unique_cations, unique_anions,
-              len(unique_salts)])
+                 len(unique_salts)])
     a = np.concatenate((a, actual_data_ranges))
     cols1 = ["Unique salts", "Cations", "Anions", "Total datapoints"]
     cols2 = ["Temperature range (K)", "Pressure range (kPa)"]
@@ -116,13 +114,13 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
         imp = Imputer(missing_values='NaN', strategy="median", axis=0)
         X = imp.fit_transform(dataDf)
         dataDf = pd.DataFrame(X, columns=cols)
-    for i in range(1,len(data)+1):
-        dataDf.iloc[:,-i].apply(lambda x: log(float(x)))
+    for i in range(1, len(data) + 1):
+        dataDf.iloc[:, -i].apply(lambda x: log(float(x)))
     instance = StandardScaler()
     scaled_data = pd.DataFrame(instance.fit_transform(
-                  dataDf.iloc[:,:-len(data)]), columns=cols[:-len(data)])
-    df = pd.concat([scaled_data, dataDf.iloc[:,-len(data):], metaDf], axis=1)
-    mean_std_of_coeffs = pd.DataFrame([instance.mean_,instance.scale_],
+        dataDf.iloc[:, :-len(data)]), columns=cols[:-len(data)])
+    df = pd.concat([scaled_data, dataDf.iloc[:, -len(data):], metaDf], axis=1)
+    mean_std_of_coeffs = pd.DataFrame([instance.mean_, instance.scale_],
                                       columns=cols[:-len(data)])
     devmodel = dev_model(mean_std_of_coeffs, data_summary, df)
     return devmodel
