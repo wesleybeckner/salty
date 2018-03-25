@@ -25,13 +25,13 @@ import numpy as np
 # from numpy.random import randint
 # import numpy.linalg as LINA
 from sklearn.preprocessing import StandardScaler
-__all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
-           "check_name", "dev_model", "load_model", "aggregate_data"]
-
-
-"""
-Salty is a toolkit for interacting with ionic liquid data from ILThermo
-"""
+# __all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
+#            "check_name", "dev_model", "load_model", "aggregate_data"]
+# 
+# 
+# """
+# Salty is a toolkit for interacting with ionic liquid data from ILThermo
+# """
 
 
 class dev_model():
