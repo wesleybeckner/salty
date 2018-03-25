@@ -62,5 +62,7 @@ MAJOR = _version_major
 MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
+PACKAGE_DATA = {'salty': [pjoin('data', '/MODELS/*')]}
 PACKAGE_DATA = {'salty': [pjoin('data', '*')]}
+
 REQUIRES = ["numpy"]

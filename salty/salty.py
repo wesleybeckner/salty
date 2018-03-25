@@ -48,22 +48,22 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
 
     Parameters
     ----------
-    :param data: list
+    data: list
         one or two of density, cpt, or viscosity
-    :param T: array
+    T: array
         desired min and max of temperature distribution
-    :param P: array
+    P: array
         desired min and max of pressure distribution
-    :param data_ranges: array
+    data_ranges: array
         desires min(s) and max(s) of property distribution(s)
-    :param merge: str
+    merge: str
         overlap or union, defaults to overlap. Merge type of property sets
-    :param feature_type: str
+    feature_type: str
         desired feature set, defaults to RDKit's 2D descriptor set
 
     Returns
     -----------
-    :return: dev_model obj
+    devmodel: dev_model obj
         returns dev_model object containing scale/center information,
         data summary, and the data frame
     """

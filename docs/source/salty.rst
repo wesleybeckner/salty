@@ -12,15 +12,6 @@ salty\.salty module
     :undoc-members:
     :show-inheritance:
 
-salty\.version module
----------------------
-
-.. automodule:: salty.version
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
 Module contents
 ---------------
 

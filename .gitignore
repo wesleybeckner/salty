@@ -1,3 +1,8 @@
+salty/data/CPT/
+salty/data/VISCOSITY/
+salty/data/DENSITY
+salty/data/WEB_APP
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
