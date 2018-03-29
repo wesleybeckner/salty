@@ -115,7 +115,8 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
         X = imp.fit_transform(dataDf)
         dataDf = pd.DataFrame(X, columns=cols)
     for i in range(1, len(data) + 1):
-        dataDf.iloc[:, -i].apply(lambda x: log(float(x)))
+        dataDf.is_copy = False
+        dataDf.iloc[:, -i] = dataDf.iloc[:, -i].apply(lambda x: log(float(x)))
     instance = StandardScaler()
     scaled_data = pd.DataFrame(instance.fit_transform(
         dataDf.iloc[:, :-len(data)]), columns=cols[:-len(data)])
