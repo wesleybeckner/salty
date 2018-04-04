@@ -10,7 +10,8 @@ Welcome to salty's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   source/salty
+   salty_readme
+   salty
 
 Indices and tables
 ==================

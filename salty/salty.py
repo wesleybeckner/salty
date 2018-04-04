@@ -41,6 +41,38 @@ class dev_model():
         self.Data = data
 
 
+def devmodel_to_array(model_name, train_fraction=1):
+    if model_name is str:
+        model_outputs = len(model_name.split("_"))
+        pickle_in = open("../salty/data/MODELS/%s_devmodel.pkl" % model_name,
+                         "rb")
+        devmodel = dill.load(pickle_in)
+    else:
+        model_outputs = -6 + model_name.Data_summary.shape[0]
+        devmodel = model_name
+    rawdf = devmodel.Data
+    rawdf = rawdf.sample(frac=1)
+    datadf = rawdf.select_dtypes(include=[np.number])
+
+    data = np.array(datadf)
+
+    n = data.shape[0]
+    d = data.shape[1]
+    d -= model_outputs
+    n_train = int(n * train_fraction)  # set fraction for training
+    n_test = n - n_train
+
+    X_train = np.zeros((n_train, d))  # prepare train/test arrays
+    X_test = np.zeros((n_test, d))
+    Y_train = np.zeros((n_train, model_outputs))
+    Y_test = np.zeros((n_test, model_outputs))
+    X_train[:] = data[:n_train, :-model_outputs]
+    Y_train[:] = (data[:n_train, -model_outputs:].astype(float))
+    X_test[:] = data[n_train:, :-model_outputs]
+    Y_test[:] = (data[n_train:, -model_outputs:].astype(float))
+    return X_train, Y_train, X_test, Y_test
+
+
 def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
                    merge="overlap", feature_type=None, impute=False):
     """

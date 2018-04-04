@@ -1,6 +1,6 @@
 import os
 from setuptools import setup, find_packages
-PACKAGES = find_packages()
+PACKAGES = find_packages(exclude=["*.json"])
 
 # Get version and release info, which is all stored in salty/version.py
 ver_file = os.path.join('salty', 'version.py')

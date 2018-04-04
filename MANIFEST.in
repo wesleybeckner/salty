@@ -1,0 +1,4 @@
+recursive-include salty/data *.csv *.pkl
+prune salty/data/VISCOSITY
+prune salty/data/CPT
+prune salty/data/DENSITY

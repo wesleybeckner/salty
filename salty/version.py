@@ -5,7 +5,7 @@ from os.path import join as pjoin
 _version_major = 0
 _version_minor = 2
 _version_micro = ''  # use '' for first of series, number for 1 and above
-_version_extra = 'dev4'
+_version_extra = 'dev5'
 # _version_extra = ''  # Uncomment this for full releases
 
 # Construct full version string from these.
@@ -62,7 +62,6 @@ MAJOR = _version_major
 MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
-PACKAGE_DATA = {'salty': [pjoin('data', '/MODELS/*')]}
 PACKAGE_DATA = {'salty': [pjoin('data', '*')]}
-
+DATA_FILES = {'salty': [pjoin('data', '*')]}
 REQUIRES = ["numpy"]
