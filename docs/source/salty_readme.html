@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; salty 0.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="salty 0.2.1 documentation" href="../index.html"/>
+        <link rel="next" title="Salty" href="salty.html"/>
+        <link rel="prev" title="Welcome to salty’s documentation!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> salty
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="salty.html">Salty</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">salty</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/salty_readme.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># Getting started</p>
+<p>Thanks for checking out Salty!</p>
+<p>The purpose of Salty is to extend some of the machine learning ecosystem to ionic liquid (IL) data from [ILThermo](<a class="reference external" href="http://ilthermo.boulder.nist.gov/">http://ilthermo.boulder.nist.gov/</a>).</p>
+<p>## Obtaining Smiles Strings</p>
+<p>Salty operates using the simplified molecular-input line-entry system ([SMILES](<a class="reference external" href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system">https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system</a>)). One of the core methods of Salty is the <cite>check_name()</cite> function that converts [IUPAC](<a class="reference external" href="https://iupac.org/">https://iupac.org/</a>) naming to Smiles:</p>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">import</span> <span class="pre">salty</span>
+<span class="pre">smiles</span> <span class="pre">=</span> <span class="pre">salty.check_name(&quot;1-butyl-3-methylimidazolium&quot;)</span>
+<span class="pre">print(smiles)</span>
+<span class="pre">`</span></code></p>
+<blockquote>
+<div>CCCCn1cc[n+](c1)C</div></blockquote>
+<p>once we have a smiles representation of a molecule, we can convert it into a molecular object with RDKit:</p>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">%matplotlib</span> <span class="pre">inline</span>
+<span class="pre">from</span> <span class="pre">rdkit</span> <span class="pre">import</span> <span class="pre">Chem</span>
+<span class="pre">from</span> <span class="pre">rdkit.Chem</span> <span class="pre">import</span> <span class="pre">Draw</span>
+<span class="pre">fig</span> <span class="pre">=</span> <span class="pre">Draw.MolToMPL(Chem.MolFromSmiles(smiles),figsize=(5,5))</span>
+<span class="pre">`</span></code></p>
+<p>![png](output_3_0.png)</p>
+<p>Once we have a molecular object, we can generate many kinds of bitvector representations or <em>fingerprints</em>.</p>
+<p>Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or, as shown below, to simply compare two molecular structures:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
+ms = [Chem.MolFromSmiles(&#8220;OC(=O)C(N)Cc1ccc(O)cc1&#8221;), Chem.MolFromSmiles(smiles)]
+fig=Draw.MolsToGridImage(ms[:],molsPerRow=2,subImgSize=(400,200))
+fig.save(&#8216;compare.png&#8217;)
+from rdkit.Chem.AtomPairs import Pairs
+from rdkit.Chem import AllChem
+from rdkit.Chem.Fingerprints import FingerprintMols
+from rdkit import DataStructs</p>
+<p>radius = 2</p>
+<p>fpatom = [Pairs.GetAtomPairFingerprintAsBitVect(x) for x in ms]
+print(&#8220;atom pair score: {:8.4f}&#8221;.format(DataStructs.TanimotoSimilarity(fpatom[0], fpatom[1])))
+fpmorg = [AllChem.GetMorganFingerprint(ms[0],radius,useFeatures=True),</p>
+<blockquote>
+<div>AllChem.GetMorganFingerprint(ms[1],radius,useFeatures=True)]</div></blockquote>
+<p>fptopo = [FingerprintMols.FingerprintMol(x) for x in ms]
+print(&#8220;morgan score: {:11.4f}&#8221;.format(DataStructs.TanimotoSimilarity(fpmorg[0], fpmorg[1])))
+print(&#8220;topological score: {:3.4f}&#8221;.format(DataStructs.TanimotoSimilarity(fptopo[0], fptopo[1])))
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<blockquote>
+<div>atom pair score:   0.0513
+morgan score:      0.0862
+topological score: 0.3991</div></blockquote>
+<p>![](compare.png)</p>
+<p><cite>check_name</cite> is based on a curated data file of known cations and anions</p>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">print(&quot;Cations</span> <span class="pre">in</span> <span class="pre">database:</span> <span class="pre">{}&quot;.format(len(salty.load_data(&quot;cationInfo.csv&quot;))))</span>
+<span class="pre">print(&quot;Anions</span> <span class="pre">in</span> <span class="pre">database:</span>&#160; <span class="pre">{}&quot;.format(len(salty.load_data(&quot;anionInfo.csv&quot;))))</span>
+<span class="pre">`</span></code></p>
+<blockquote>
+<div>Cations in database: 316
+Anions in database:  125</div></blockquote>
+<p>## A Few Useful Datafiles</p>
+<p>Salty contains some csv datafiles taken directly from ILThermo: heat capacity (constant pressure), density, and viscosity data for pure ILs. The <cite>aggregate_data</cite> function can be used to quickly manipulate these datafiles and append 2D features.</p>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">rawdata</span> <span class="pre">=</span> <span class="pre">salty.load_data(&quot;cpt.csv&quot;)</span>
+<span class="pre">rawdata.columns</span>
+<span class="pre">`</span></code></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Index([&#8216;Heat capacity at constant pressure per unit volume, J/K/m&lt;SUP&gt;3&lt;/SUP&gt;&#8217;,</dt>
+<dd><blockquote class="first">
+<div>&#8216;Heat capacity at constant pressure, J/K/mol&#8217;,
+&#8216;Heat capacity at constant pressure&lt;SUP&gt;*&lt;/SUP&gt;, J/K/mol&#8217;,
+&#8216;Pressure, kPa&#8217;, &#8216;Temperature, K&#8217;, &#8216;salt_name&#8217;],</div></blockquote>
+<p class="last">dtype=&#8217;object&#8217;)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">devmodel</span> <span class="pre">=</span> <span class="pre">salty.aggregate_data(['cpt',</span> <span class="pre">'density'])</span> <span class="pre">#</span> <span class="pre">other</span> <span class="pre">option</span> <span class="pre">is</span> <span class="pre">viscosity</span>
+<span class="pre">`</span></code></p>
+<p><cite>aggregate_data</cite> returns a devmodel object that contains a pandas dataframe of the raw data and a data summary:</p>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">devmodel.Data_summary</span>
+<span class="pre">`</span></code></p>
+<p>&lt;div&gt;
+&lt;style&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>.dataframe thead tr:only-child th {</dt>
+<dd>text-align: right;</dd>
+</dl>
+<p>}</p>
+<dl class="docutils">
+<dt>.dataframe thead th {</dt>
+<dd>text-align: left;</dd>
+</dl>
+<p>}</p>
+<dl class="docutils">
+<dt>.dataframe tbody tr th {</dt>
+<dd>vertical-align: top;</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>&lt;/style&gt;
+&lt;table border=&#8221;1&#8221; class=&#8221;dataframe&#8221;&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;thead&gt;</dt>
+<dd><dl class="first docutils">
+<dt>&lt;tr style=&#8221;text-align: right;&#8221;&gt;</dt>
+<dd>&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;</dd>
+</dl>
+<p class="last">&lt;/tr&gt;</p>
+</dd>
+</dl>
+<p>&lt;/thead&gt;
+&lt;tbody&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;tr&gt;</dt>
+<dd>&lt;th&gt;Unique salts&lt;/th&gt;
+&lt;td&gt;109&lt;/td&gt;</dd>
+</dl>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;Cations&lt;/th&gt;
+&lt;td&gt;array([&#8216;CCCC[n+]1ccc(cc1)C&#8217;, &#8216;CCCCCCCCn1cc[n+]...&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;Anions&lt;/th&gt;
+&lt;td&gt;array([&#8216;[B-](F)(F)(F)F&#8217;, &#8216;F[P-](F)(F)(F)(F)F&#8217;,...&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;Total datapoints&lt;/th&gt;
+&lt;td&gt;7834&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;density&lt;/th&gt;
+&lt;td&gt;847.5 - 1557.1&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;cpt&lt;/th&gt;
+&lt;td&gt;207.47 - 1764.0&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;Temperature range (K)&lt;/th&gt;
+&lt;td&gt;100.0 - 60000.0&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;th&gt;Pressure range (kPa)&lt;/th&gt;
+&lt;td&gt;273.15 - 463.15&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;</p>
+</div></blockquote>
+<p>&lt;/tbody&gt;</p>
+</div></blockquote>
+<p>&lt;/table&gt;
+&lt;/div&gt;</p>
+<p>and has the builtin 2D features from [rdkit](<a class="reference external" href="http://www.rdkit.org/docs/GettingStartedInPython.html#list-of-available-descriptors">http://www.rdkit.org/docs/GettingStartedInPython.html#list-of-available-descriptors</a>) all scaled and centered:</p>
+<p><code class="docutils literal"><span class="pre">`python</span>
+<span class="pre">devmodel.Data.columns</span>
+<span class="pre">`</span></code></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Index([&#8216;steiger-anion&#8217;, &#8216;Marsili Partial Charges-anion&#8217;, &#8216;BalabanJ-anion&#8217;,</dt>
+<dd><blockquote class="first">
+<div>&#8216;BertzCT-anion&#8217;, &#8216;Ipc-anion&#8217;, &#8216;HallKierAlpha-anion&#8217;, &#8216;Kappa1-anion&#8217;,
+&#8216;Kappa2-anion&#8217;, &#8216;Kappa3-anion&#8217;, &#8216;Chi0-anion&#8217;,
+...
+&#8216;VSA_EState10-cation&#8217;, &#8216;Topliss fragments-cation&#8217;, &#8216;Temperature, K&#8217;,
+&#8216;Pressure, kPa&#8217;, &#8216;Heat capacity at constant pressure, J/K/mol&#8217;,
+&#8216;Specific density, kg/m&lt;SUP&gt;3&lt;/SUP&gt;&#8217;, &#8216;name-anion&#8217;, &#8216;smiles-anion&#8217;,
+&#8216;name-cation&#8217;, &#8216;smiles-cation&#8217;],</div></blockquote>
+<p class="last">dtype=&#8217;object&#8217;, length=196)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>The purpose of the data summary is to provide historical information when ML models are ported over into [GAINS](<a class="reference external" href="https://wesleybeckner.github.io/gains/">https://wesleybeckner.github.io/gains/</a>). Once we have a devmodel the underlying data can be interrogated:</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+import matplotlib.pyplot as plt
+import numpy as np
+df = devmodel.Data
+with plt.style.context(&#8216;seaborn-whitegrid&#8217;):</p>
+<blockquote>
+<div><p>fig=plt.figure(figsize=(5,5), dpi=300)
+ax=fig.add_subplot(111)
+scat = ax.scatter(np.exp(df[&#8220;Heat capacity at constant pressure, J/K/mol&#8221;]), np.exp(</p>
+<blockquote>
+<div>df[&#8220;Specific density, kg/m&lt;SUP&gt;3&lt;/SUP&gt;&#8221;]),
+marker=&#8221;*&#8221;, c=df[&#8220;Temperature, K&#8221;]/max(df[&#8220;Temperature, K&#8221;]), cmap=&#8221;Purples&#8221;)</div></blockquote>
+<p>plt.colorbar(scat)
+ax.grid()
+ax.set_ylabel(&#8220;Density $(kg/m^3)$&#8221;)
+ax.set_xlabel(&#8220;Heat Capacity $(J/K/mol)$&#8221;)</p>
+</div></blockquote>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>![png](output_17_0.png)</p>
+<p>## Build NN Models with Scikit-Learn</p>
+<p>Salty&#8217;s <cite>devmodel_to_array</cite> function automatically detects the number of targets in the devmodel and creates train/test arrays accordingly:</p>
+<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python
+from sklearn.model_selection import cross_val_score
+from sklearn.neural_network import MLPRegressor
+from sklearn.multioutput import MultiOutputRegressor
+model = MLPRegressor(activation=&#8217;logistic&#8217;, alpha=0.92078, batch_size=&#8217;auto&#8217;,</p>
+<blockquote>
+<div>beta_1=0.9, beta_2=0.999, early_stopping=False, epsilon=1e-08,
+hidden_layer_sizes=75, learning_rate=&#8217;constant&#8217;,
+learning_rate_init=0.001, max_iter=1e8, momentum=0.9,
+nesterovs_momentum=True, power_t=0.5, random_state=None,
+shuffle=True, solver=&#8217;lbfgs&#8217;, tol=1e-08, validation_fraction=0.1,
+verbose=False, warm_start=False)</div></blockquote>
+<p>multi_model = MultiOutputRegressor(model)
+X_train, Y_train, X_test, Y_test = salty.devmodel_to_array(devmodel, train_fraction=0.8)
+multi_model.fit(X_train, Y_train)
+<a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<blockquote>
+<div><dl class="docutils">
+<dt>MultiOutputRegressor(estimator=MLPRegressor(activation=&#8217;logistic&#8217;, alpha=0.92078, batch_size=&#8217;auto&#8217;,</dt>
+<dd><p class="first">beta_1=0.9, beta_2=0.999, early_stopping=False, epsilon=1e-08,
+hidden_layer_sizes=75, learning_rate=&#8217;constant&#8217;,
+learning_rate_init=0.001, max_iter=100000000.0, momentum=0.9,
+nesterovs_momentum=True, power_t=0.5, random_state=None,
+shuffle=True, solver=&#8217;lbfgs&#8217;, tol=1e-08, validation_fraction=0.1,
+verbose=False, warm_start=False),</p>
+<blockquote class="last">
+<div>n_jobs=1)</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+<p>We can then see how the model is performing with matplotlib:</p>
+<p><a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a>python
+X=X_train
+Y=Y_train
+with plt.style.context(&#8216;seaborn-whitegrid&#8217;):</p>
+<blockquote>
+<div><p>fig=plt.figure(figsize=(5,2.5), dpi=300)
+ax=fig.add_subplot(122)
+ax.plot([0,2000], [0,2000], linestyle=&#8221;-&#8221;, label=None, c=&#8221;black&#8221;, linewidth=1)
+ax.plot(np.exp(Y)[:,0],np.exp(multi_model.predict(X))[:,0],</p>
+<blockquote>
+<div>marker=&#8221;*&#8221;,linestyle=&#8221;&#8221;,alpha=0.4)</div></blockquote>
+<p>ax.set_ylabel(&#8220;Predicted $C_{pt}$ $(K/J/mol)$&#8221;)
+ax.set_xlabel(&#8220;Actual $C_{pt}$ $(K/J/mol)$&#8221;)
+ax.text(0.1,.9,&#8221;R: {0:5.3f}&#8221;.format(multi_model.score(X,Y)), transform = ax.transAxes)
+plt.xlim(200,1700)
+plt.ylim(200,1700)
+ax.grid()
+ax=fig.add_subplot(121)
+ax.plot([0,2000], [0,2000], linestyle=&#8221;-&#8221;, label=None, c=&#8221;black&#8221;, linewidth=1)
+ax.plot(np.exp(Y)[:,1],np.exp(multi_model.predict(X))[:,1],</p>
+<blockquote>
+<div>marker=&#8221;*&#8221;,linestyle=&#8221;&#8221;,alpha=0.4)</div></blockquote>
+<p>ax.set_ylabel(&#8220;Predicted Density $(kg/m^3)$&#8221;)
+ax.set_xlabel(&#8220;Actual Density $(kg/m^3)$&#8221;)
+plt.xlim(850,1600)
+plt.ylim(850,1600)
+ax.grid()
+plt.tight_layout()</p>
+</div></blockquote>
+<p><a href="#id29"><span class="problematic" id="id30">``</span></a><a href="#id31"><span class="problematic" id="id32">`</span></a></p>
+<p>![png](output_21_0.png)</p>
+<p>These are all the basic Salty functions for now!</p>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="salty.html" class="btn btn-neutral float-right" title="Salty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to salty’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, wesley beckner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.2.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

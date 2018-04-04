@@ -1,0 +1,8 @@
+salty
+=====
+
+.. toctree::
+   :maxdepth: 4
+
+   salty
+   setup
