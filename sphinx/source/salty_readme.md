@@ -288,4 +288,66 @@ with plt.style.context('seaborn-whitegrid'):
 ![png](_static/output_21_0.png)
 
 
+## Build Models with Keras
+
+The above sklearn model has a very simple architecture (1 hidden layer with 75 nodes) we can recreate this in Keras:
+
+
+```python
+from keras.layers import Dense, Dropout, Input
+from keras.models import Model, Sequential
+from keras.optimizers import Nadam
+
+X_train, Y_train, X_test, Y_test = salty.devmodel_to_array\
+    (devmodel, train_fraction=0.8)
+model = Sequential()
+model.add(Dense(75, activation='relu', input_dim=X_train.shape[1]))
+model.add(Dropout(0.5))
+model.add(Dense(2, activation='relu'))
+model.compile(optimizer="adam",
+              loss="mean_squared_error",
+              metrics=['mse'])
+model.fit(X_train,Y_train,epochs=1000,verbose=False)
+```
+
+
+
+
+    <keras.callbacks.History at 0x130526dd8>
+
+
+
+
+```python
+X=X_train
+Y=Y_train
+with plt.style.context('seaborn-whitegrid'):
+    fig=plt.figure(figsize=(5,2.5), dpi=300)
+    ax=fig.add_subplot(122)
+    ax.plot([0,2000], [0,2000], linestyle="-", label=None, c="black", linewidth=1)
+    ax.plot(np.exp(Y)[:,0],np.exp(model.predict(X))[:,0],\
+            marker="*",linestyle="",alpha=0.4)
+    ax.set_ylabel("Predicted $C_{pt}$ $(K/J/mol)$")
+    ax.set_xlabel("Actual $C_{pt}$ $(K/J/mol)$")
+    #ax.text(0.1,.9,"R: {0:5.3f}".format(multi_model.score(X,Y)), transform = ax.transAxes)
+    plt.xlim(200,1700)
+    plt.ylim(200,1700)
+    ax.grid()
+    ax=fig.add_subplot(121)
+    ax.plot([0,2000], [0,2000], linestyle="-", label=None, c="black", linewidth=1)
+    ax.plot(np.exp(Y)[:,1],np.exp(model.predict(X))[:,1],\
+            marker="*",linestyle="",alpha=0.4)
+    
+    ax.set_ylabel("Predicted Density $(kg/m^3)$")
+    ax.set_xlabel("Actual Density $(kg/m^3)$")
+    plt.xlim(850,1600)
+    plt.ylim(850,1600)
+    ax.grid()
+    plt.tight_layout()
+```
+
+
+![png](_static/output_24_0.png)
+
+
 These are all the basic Salty functions for now!
