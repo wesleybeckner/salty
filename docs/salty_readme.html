@@ -178,7 +178,7 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CCCCn1cc</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="p">](</span><span class="n">_static</span><span class="o">/</span><span class="n">c1</span><span class="p">)</span><span class="n">C</span>
 </pre></div>
 </div>
-<p>once we have a smiles representation of a molecule, we can convert it into a molecular object with RDKit:</p>
+<p>Once we have a smiles representation of a molecule, we can convert it into a molecular object with RDKit:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="kn">from</span> <span class="nn">rdkit</span> <span class="kn">import</span> <span class="n">Chem</span>
 <span class="kn">from</span> <span class="nn">rdkit.Chem</span> <span class="kn">import</span> <span class="n">Draw</span>
@@ -186,8 +186,8 @@
 </pre></div>
 </div>
 <p><img alt="png" src="_images/output_3_0.png" /></p>
-<p>Once we have a molecular object, we can generate many kinds of bitvector representations or <em>fingerprints</em>.</p>
-<p>Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or, as shown below, to simply compare two molecular structures:</p>
+<p>We can generate many kinds of bitvector representations or <em>fingerprints</em> of the molecular structure.</p>
+<p>Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or to coompare two molecular structures:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ms</span> <span class="o">=</span> <span class="p">[</span><span class="n">Chem</span><span class="o">.</span><span class="n">MolFromSmiles</span><span class="p">(</span><span class="s2">&quot;OC(=O)C(N)Cc1ccc(O)cc1&quot;</span><span class="p">),</span> <span class="n">Chem</span><span class="o">.</span><span class="n">MolFromSmiles</span><span class="p">(</span><span class="n">smiles</span><span class="p">)]</span>
 <span class="n">fig</span><span class="o">=</span><span class="n">Draw</span><span class="o">.</span><span class="n">MolsToGridImage</span><span class="p">(</span><span class="n">ms</span><span class="p">[:],</span><span class="n">molsPerRow</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">subImgSize</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">200</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;compare.png&#39;</span><span class="p">)</span>

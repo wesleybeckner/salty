@@ -19,7 +19,7 @@ print(smiles)
     CCCCn1cc[n+](_static/c1)C
 
 
-once we have a smiles representation of a molecule, we can convert it into a molecular object with RDKit:
+Once we have a smiles representation of a molecule, we can convert it into a molecular object with RDKit:
 
 
 ```python
@@ -33,9 +33,9 @@ fig = Draw.MolToMPL(Chem.MolFromSmiles(smiles),figsize=(5,5))
 ![png](_static/output_3_0.png)
 
 
-Once we have a molecular object, we can generate many kinds of bitvector representations or *fingerprints*.
+We can generate many kinds of bitvector representations or *fingerprints* of the molecular structure.
 
-Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or, as shown below, to simply compare two molecular structures:
+Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or to coompare two molecular structures:
 
 
 ```python
