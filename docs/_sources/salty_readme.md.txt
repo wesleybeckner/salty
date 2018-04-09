@@ -35,7 +35,7 @@ fig = Draw.MolToMPL(Chem.MolFromSmiles(smiles),figsize=(5,5))
 
 We can generate many kinds of bitvector representations or *fingerprints* of the molecular structure.
 
-Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or to coompare two molecular structures:
+Fingerprints can be used as descriptors in machine learning models, uncertainty estimators in structure search algorithms, or to compare two molecular structures:
 
 
 ```python
