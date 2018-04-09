@@ -1,8 +1,11 @@
 Salty
-========
+=============
 
-API
----
-.. toctree::
+salty\.core module
+--------------------
 
-    salty.salty 
+.. automodule:: salty.core
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

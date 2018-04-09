@@ -81,13 +81,13 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
     Parameters
     ----------
     data: list
-        one or two of density, cpt, or viscosity
+        density, cpt, and/or viscosity
     T: array
         desired min and max of temperature distribution
     P: array
         desired min and max of pressure distribution
     data_ranges: array
-        desires min(s) and max(s) of property distribution(s)
+        desired min and max of property distribution(s)
     merge: str
         overlap or union, defaults to overlap. Merge type of property sets
     feature_type: str

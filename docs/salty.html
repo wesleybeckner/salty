@@ -36,7 +36,6 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="salty 0.2.1 documentation" href="index.html"/>
-        <link rel="next" title="salty.salty module" href="salty.salty.html"/>
         <link rel="prev" title="Getting started" href="salty_readme.html"/> 
 
   
@@ -94,10 +93,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="salty_readme.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Salty</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#api">API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="salty.salty.html">salty.salty module</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-salty.core">salty.core module</a></li>
 </ul>
 </li>
 </ul>
@@ -165,13 +161,135 @@
             
   <div class="section" id="salty">
 <h1>Salty<a class="headerlink" href="#salty" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="api">
-<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="salty.salty.html">salty.salty module</a></li>
+<div class="section" id="module-salty.core">
+<span id="salty-core-module"></span><h2>salty.core module<a class="headerlink" href="#module-salty.core" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="salty.core.Benchmark">
+<em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">Benchmark</code><a class="reference internal" href="_modules/salty/core.html#Benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.Benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="staticmethod">
+<dt id="salty.core.Benchmark.run">
+<em class="property">static </em><code class="descname">run</code><span class="sig-paren">(</span><em>function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#Benchmark.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.Benchmark.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="salty.core.aggregate_data">
+<code class="descclassname">salty.core.</code><code class="descname">aggregate_data</code><span class="sig-paren">(</span><em>data, T=[0, inf], P=[0, inf], data_ranges=None, merge='overlap', feature_type=None, impute=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#aggregate_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.aggregate_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregates molecular data for model training</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>list</em>) &#8211; density, cpt, and/or viscosity</li>
+<li><strong>T</strong> (<em>array</em>) &#8211; desired min and max of temperature distribution</li>
+<li><strong>P</strong> (<em>array</em>) &#8211; desired min and max of pressure distribution</li>
+<li><strong>data_ranges</strong> (<em>array</em>) &#8211; desired min and max of property distribution(s)</li>
+<li><strong>merge</strong> (<em>str</em>) &#8211; overlap or union, defaults to overlap. Merge type of property sets</li>
+<li><strong>feature_type</strong> (<em>str</em>) &#8211; desired feature set, defaults to RDKit&#8217;s 2D descriptor set</li>
 </ul>
-</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>devmodel</strong> &#8211; returns dev_model object containing scale/center information,
+data summary, and the data frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dev_model obj</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="salty.core.check_name">
+<code class="descclassname">salty.core.</code><code class="descname">check_name</code><span class="sig-paren">(</span><em>user_query</em>, <em>index=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#check_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.check_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>checkName uses a database to return either SMILES or IUPAC
+names of cations/anions.</p>
+<p>Default behavior is to return the SMILES encoding of an ion given
+the ion name as input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_query</strong> (<em>str</em>) &#8211; string that will be used to query the database.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> &#8211; either the name of the salt, cation, or anion; or SMILES of the
+salt, cation, or anion (SMILES for the salt are written as the
+cation and ion SMILES strings separated by a comma)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="salty.core.dev_model">
+<em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">dev_model</code><span class="sig-paren">(</span><em>coef_data</em>, <em>data_summary</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#dev_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.dev_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="salty.core.devmodel_to_array">
+<code class="descclassname">salty.core.</code><code class="descname">devmodel_to_array</code><span class="sig-paren">(</span><em>model_name</em>, <em>train_fraction=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#devmodel_to_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.devmodel_to_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="salty.core.load_data">
+<code class="descclassname">salty.core.</code><code class="descname">load_data</code><span class="sig-paren">(</span><em>data_file_name</em>, <em>pickleFile=False</em>, <em>simpleList=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data from module_path/data/data_file_name.
+:param data_file_name:
+:type data_file_name: String. Name of csv or pickle file to be loaded from
+:param module_path/data/data_file_name. For example &#8216;salt_info.csv&#8217;.:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong> &#8211; A data frame. For example with each row representing one
+salt and each column representing the features of a given
+salt.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Pandas DataFrame</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="salty.core.load_model">
+<code class="descclassname">salty.core.</code><code class="descname">load_model</code><span class="sig-paren">(</span><em>data_file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#load_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.load_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data from module_path/data/MODELS/data_file_name.
+:param data_file_name:
+:type data_file_name: String. Name of dill file to be loaded from
+:param module_path/data/data_file_name. For example &#8216;density_devmodel.pkl&#8217;.:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dev_model object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="salty.core.suppress_stdout_stderr">
+<em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">suppress_stdout_stderr</code><a class="reference internal" href="_modules/salty/core.html#suppress_stdout_stderr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.suppress_stdout_stderr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A context manager for doing a &#8220;deep suppression&#8221; of stdout and stderr in
+Python, i.e. will suppress all print, even if the print originates in a
+compiled C/Fortran sub-function.</p>
+<blockquote>
+<div>This will not suppress raised exceptions, since exceptions are printed</div></blockquote>
+<p>to stderr just before a script exits, and after the context manager has
+exited (at least, I think that is why it lets exceptions through).</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -184,8 +302,6 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="salty.salty.html" class="btn btn-neutral float-right" title="salty.salty module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="salty_readme.html" class="btn btn-neutral" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
