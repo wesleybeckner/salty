@@ -27,11 +27,24 @@ source activate py36
 # on Windows
 # activate py36
 conda install -c rdkit rdkit
-```
 
+```
 Salty can then be installed with:
 ```
 pip install salty-ilthermo
+```
+##### Alternative versions of rdkit:
+Should rdkit fail to install properly, refer to the [Anaconda rdkit package entry](https://anaconda.org/rdkit/rdkit)
+and try:
+```
+#Recommended
+conda install -c rdkit/label/beta rdkit 
+```
+```
+conda install -c rdkit/label/attic rdkit 
+```
+```
+conda install -c rdkit/label/testing rdkit
 ```
 
 ## Development
