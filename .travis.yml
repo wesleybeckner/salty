@@ -32,8 +32,9 @@ install:
 - travis_retry pip install -r requirements.txt
 - travis_retry pip install -e .
 script:
-- flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/ | grep -v /scripts/ | grep -v /webapp/ | grep -v /docs/ | grep -v /sphinx/`; 
-- py.test
+- flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/ | grep -v /scripts/ | grep -v /webapp/ | grep -v /docs/ | grep -v /sphinx/`
+- mkdir for_test
+- cd for_test
+- py.test --pyargs gains --cov-report term-missing --cov=gains
 after_success:
-		flake8 
 - coveralls
