@@ -10,28 +10,23 @@ import dill
 from math import inf
 from math import log
 from sklearn.preprocessing import Imputer
-# import matplotlib.pylab as plt
 import numpy as np
-# import itertools as it
-# from scipy.stats import uniform as sp_rand
-# from scipy.stats import mode
-# from sklearn.linear_model import LassoLarsIC
-# from sklearn.linear_model import Lasso
-# from sklearn.svm import SVR
-# from sklearn.neural_network import MLPRegressor
-# from sklearn import preprocessing
-# from sklearn.model_selection import RandomizedSearchCV
-# from sklearn.model_selection import cross_val_score
-# from numpy.random import randint
-# import numpy.linalg as LINA
 from sklearn.preprocessing import StandardScaler
-# __all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
-#            "check_name", "dev_model", "load_model", "aggregate_data"]
-#
-#
-# """
-# Salty is a toolkit for interacting with ionic liquid data from ILThermo
-# """
+__all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
+           "check_name", "dev_model", "load_model", "aggregate_data",
+           "devmodel_to_array"]
+
+
+"""
+Salty is a toolkit for interacting with ionic liquid data from ILThermo
+"""
+
+
+class qspr_model():
+    def __init__(self, model, summary, descriptors):
+        self.Model = model
+        self.Summary = summary
+        self.Descriptors = descriptors
 
 
 class dev_model():
@@ -99,7 +94,6 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
         returns dev_model object containing scale/center information,
         data summary, and the data frame
     """
-
     data_files = []
     for i, string in enumerate(data):
         data_files.append(load_data("MODELS/%s_premodel.csv" % string))

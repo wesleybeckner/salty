@@ -1,9 +1,9 @@
-,0
+0
 Unique salts,453
 Total datapoints,3307
-Temperature range,290.15 - 314.3 K
-Pressure range,100.7 - 160.0 kPa
-Viscosity range,0.001705 - 0.999 Pas
+Temperature range,290.15 - 314.3
+Pressure range,100.7 - 160.0
+Viscosity range,0.001705 - 0.999
 activation,tanh
 alpha,0.6579559141197934
 batch_size,auto

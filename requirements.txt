@@ -1,2 +1,4 @@
 pandas
 dill
+numpy
+scikit-learn
