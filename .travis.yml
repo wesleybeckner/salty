@@ -35,6 +35,6 @@ script:
 - flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/ | grep -v /scripts/ | grep -v /webapp/ | grep -v /docs/ | grep -v /sphinx/`
 - mkdir for_test
 - cd for_test
-- py.test --pyargs gains --cov-report term-missing --cov=gains
+- py.test --pyargs salty --cov-report term-missing --cov=salty
 after_success:
 - coveralls
