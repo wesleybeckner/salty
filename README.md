@@ -29,8 +29,9 @@ source activate py36
 conda install -c rdkit rdkit
 
 ```
-##### Alternative versions of RDKit
-Should rdkit fail to install properly, try one of the following:
+##### Alternative versions of rdkit
+Should rdkit fail to install properly, refer to the anaconda package [directory[(https://anaconda.org/rdkit/rdkit)]
+and try:
 ```
 #Recommended
 conda install -c rdkit/label/beta rdkit 
