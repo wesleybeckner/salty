@@ -33,8 +33,8 @@ Salty can then be installed with:
 ```
 pip install salty-ilthermo
 ```
-##### Alternative versions of rdkit
-Should rdkit fail to install properly, refer to the [Anaconda rdkit package entry](https://anaconda.org/rdkit/rdkit)]
+##### Alternative versions of rdkit:
+Should rdkit fail to install properly, refer to the [Anaconda rdkit package entry](https://anaconda.org/rdkit/rdkit)
 and try:
 ```
 #Recommended
