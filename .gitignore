@@ -2,6 +2,7 @@ salty/data/CPT/
 salty/data/VISCOSITY/
 salty/data/DENSITY
 salty/data/WEB_APP
+scripts/development
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -92,3 +93,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Pycharm
+.idea
