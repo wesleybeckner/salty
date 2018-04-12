@@ -27,7 +27,19 @@ source activate py36
 # on Windows
 # activate py36
 conda install -c rdkit rdkit
-#the beta version may be installed with: conda install -c rdkit/label/beta rdkit 
+
+```
+##### Alternative versions of RDKit
+Should rdkit fail to install properly, try one of the following:
+```
+#Recommended
+conda install -c rdkit/label/beta rdkit 
+```
+```
+conda install -c rdkit/label/attic rdkit 
+```
+```
+conda install -c rdkit/label/testing rdkit
 ```
 Salty can then be installed with:
 ```
