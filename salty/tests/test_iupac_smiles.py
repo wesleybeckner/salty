@@ -4,8 +4,7 @@ from rdkit.Chem import AllChem as Chem
 import unittest
 import datetime
 
-
-class check_data_tests(unittest.TestCase):
+class iupac_smiles_tests(unittest.TestCase):
     data_files = ["cationInfo.csv", "anionInfo.csv"]
 
     def test_1_check_data(self):

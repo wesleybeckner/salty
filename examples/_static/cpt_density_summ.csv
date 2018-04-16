@@ -1,0 +1,42 @@
+,0
+Unique salts,109
+Cations,"array(['CCCC[n+]1ccc(cc1)C', 'CCCCCCCCn1cc[n+](c1)C', 'CCCCn1cc[n+](c1)C',
+       'CCn1cc[n+](c1)C', 'CCCCCCn1cc[n+](c1)C', 'CCCC[n+]1cccc(c1)C',
+       'CCCC[n+]1ccccc1', 'CCC[n+]1ccccc1', 'CCCCCCCC[n+]1cccc(c1)C',
+       'CCCCn1cc[n+](c1C)C', 'c1c[n+](cn1CCCCC)C', 'c1c[n+](cn1CCCCCCC)C',
+       'c1c[n+](cn1CCCCCCCCC)C', 'CCCC[n+]1cccc(c1)C#N',
+       'CCCCCC[n+]1ccc(C#N)cc1', 'CCCC[N+]1(CCCC1)C',
+       'C(CCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC)CCCCC', 'Cn1cc[n+](c1)C',
+       'C[n+]1ccccc1', 'CCCCCCCC[n+]1ccc2ccccc2c1',
+       'C[NH+]1CN(C=C1)CC2=CC=CC=C2', 'C[n+]1cc[nH]c1',
+       'CCCCCCCC[n+]1cccc(c1)C#N', 'CN(C)c1c(C)c[n+](cc1)CCCCCC',
+       'CCCCCC[n+]1cccc(C#N)c1', 'CCCC[N+]1(CCCCC1)C', 'OCC[NH2+]C',
+       '[P+](CCCC)(CCCC)(CCCC)(CC)', 'C[n+]1ccn(c1)CCO', 'CC[NH3+]',
+       'CCCC[P+](CCCC)(CCCC)CCCC', 'CCCC[N+](C)(CCCC)CCCC',
+       'CCCn1cc[n+](c1)C', 'CC[n+]1ccccc1', 'CCC[N+]1(CCCC1)C',
+       '[P+](CC)(CC)(CC)(CCCCCCCC)', 'CCCCCCCCCCn1cc[n+](c1)C',
+       'C1=C[N+](C)=CN1CCCCCCCCCC', 'CCCCCCCCCCCC[N+](CC)(CC)CC',
+       'CN1C=C[N+](=C1)CC2=CC=CC=C2', 'CC[n+]1ccccc1C',
+       '[P+](CC)(CC)(CC)(CCCCCC)', 'CC[n+]1ccccc1(CC)',
+       'c1c[n+](cn1CC(C)C)C', 'CCCC[n+]1ccc(N(C)C)c(c1)',
+       '[P+](CCCC)(CCCC)(CCCC)(C)'], dtype=object)"
+Anions,"array(['[B-](F)(F)(F)F', 'F[P-](F)(F)(F)(F)F', 'N#C[B-](C#N)(C#N)C#N',
+       'C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F', 'C(#N)[N-]C#N',
+       'C(F)(F)(F)S(=O)(=O)[O-]', 'CS(=O)(=O)[O-]', 'COS(=O)(=O)[O-]',
+       '[I-]', 'C(#N)[C-](C#N)C#N', 'C(#N)[S-]', 'CC(=O)[O-]', '[Cl-]',
+       '[Br-]', 'CC(CC(C)(C)C)CP(=O)(CC(C)CC(C)(C)C)[O-]',
+       'COP(=O)([O-])OC', 'CCCCC(=O)[O-]', 'CCCC(=O)[O-]', 'CCC(=O)[O-]',
+       'CCOP(=O)([O-])OCC', 'C(=[N-])=NC#N', '[N+](=O)([O-])[O-]',
+       'C(=O)(C(F)(F)F)[O-]', 'C(CS(=O)(=O)[O-])N',
+       'C(CCN)C[C@@H](C(=O)[O-])N', 'C[C@H]([C@@H](C(=O)[O-])N)O',
+       'C([C@@H](C(=O)[O-])N)S', 'CC(C)[C@@H](C(=O)[O-])N',
+       'C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F',
+       'FC(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F',
+       'Cc1ccc(cc1)S(=O)(=O)[O-]', 'C([C@@H](C(=O)[O-])N)O',
+       'C1C[C@H](NC1)C(=O)[O-]', 'CCOS(=O)(=O)[O-]', 'C1=CC=C(C=C1)[O-]',
+       'CCCCCCCCOS(=O)(=O)[O-]', 'OS(=O)(=O)[O-]'], dtype=object)"
+Total datapoints,7834
+density,847.5 - 1557.1
+cpt,207.47 - 1764.0
+Temperature range (K),100.0 - 60000.0
+Pressure range (kPa),273.15 - 463.15
