@@ -9,12 +9,13 @@ import pickle
 import dill
 from math import inf
 from math import log
+from math import exp
 from sklearn.preprocessing import Imputer
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 __all__ = ["load_data", "suppress_stdout_stderr", "Benchmark",
            "check_name", "dev_model", "load_model", "aggregate_data",
-           "devmodel_to_array"]
+           "devmodel_to_array", "merge_duplicates"]
 
 
 """
@@ -34,6 +35,40 @@ class dev_model():
         self.Coef_data = coef_data
         self.Data_summary = data_summary
         self.Data = data
+
+
+def merge_duplicates(model_name):
+    if model_name is str:
+        model_outputs = len(model_name.split("_"))
+        pickle_in = open("../salty/data/MODELS/%s_devmodel.pkl" % model_name,
+                         "rb")
+        devmodel = dill.load(pickle_in)
+    else:
+        model_outputs = -6 + model_name.Data_summary.shape[0]
+        devmodel = model_name
+
+    cols = devmodel.Data.columns
+    if (devmodel.Data.iloc[:, -(4 + model_outputs):-4].max() < 700).all():
+        for output_index in range(model_outputs):
+            devmodel.Data.iloc[:, -(5 + output_index)] = \
+                devmodel.Data.iloc[:, -(5 + output_index)].apply(
+                    lambda x: exp(float(x)))
+    output_val = []
+    output_xtd = []
+    running_size = []
+    for output_index in range(model_outputs):
+        output_val.append(
+            devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )[cols[-(5 + output_index)]].mean())
+        output_xtd.append(
+            devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )[cols[-(5 + output_index)]].std())
+        running_size.append(
+            devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )[cols[-(5 + output_index)]].count())
+    salts = (devmodel.Data["smiles-cation"] + "." +
+             devmodel.Data["smiles-anion"]).unique()  # grab unique salts
+    return output_val, output_xtd, running_size, salts
 
 
 def devmodel_to_array(model_name, train_fraction=1):
