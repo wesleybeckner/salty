@@ -66,8 +66,8 @@ def merge_duplicates(model_name):
         running_size.append(
             devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
                                   )[cols[-(5 + output_index)]].count())
-    salts = (devmodel.Data["smiles-cation"] + "."
-             + devmodel.Data["smiles-anion"]).unique()  # grab unique salts
+    salts = (devmodel.Data["smiles-cation"] + "." +
+             devmodel.Data["smiles-anion"]).unique()  # grab unique salts
     return output_val, output_xtd, running_size, salts
 
 
