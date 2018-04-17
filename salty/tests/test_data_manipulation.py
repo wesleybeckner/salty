@@ -4,17 +4,13 @@ import unittest
 
 
 class data_manipulation_tests(unittest.TestCase):
-    data = ['cpt', 'density']
+    data = ['cpt']
     data2 = ['cpt', 'density', 'viscosity']
     data_ranges = [[200, 1000], [900, 1300], [0, 2]]
     T = [298.1, 298.16]
     P = [101, 102]
-    devmodel = salty.aggregate_data(data, T=T, P=P)
-    alt_devmodel = salty.aggregate_data(data2, T=T, P=P,
-                                        data_ranges=data_ranges, impute=True)
-    string_devmodel = "cpt_density_viscosity"
-    salty.devmodel_to_array(string_devmodel)
-    salty.merge_duplicates(string_devmodel)
+    devmodel = salty.aggregate_data(data2, T=T, P=P, impute=True,
+                                    data_ranges=data_ranges)
 
     def test_1_aggregate_data(self):
         devmodel = salty.aggregate_data(self.data, T=self.T, P=self.P)
