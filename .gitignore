@@ -1,8 +1,3 @@
-salty/data/MELTING_POINT/
-salty/data/CPT/
-salty/data/VISCOSITY/
-salty/data/DENSITY
-salty/data/WEB_APP
 scripts/development
 examples/*.ipynb
 

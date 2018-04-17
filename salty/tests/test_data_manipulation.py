@@ -6,9 +6,14 @@ import datetime
 
 class data_manipulation_tests(unittest.TestCase):
     data = ['cpt', 'density']
+    data_ranges = [[200, 1000], [800, 1400]]
     T = [298.1, 298.16]
     P = [101, 102]
-    devmodel = salty.aggregate_data(data, T=T, P=P)
+    string_model_name = "cpt_density_viscosity"
+    string_devmodel = salty.aggregate_data(string_model_name, T=T, P=P,
+                                           data_ranges=data_ranges,
+                                           impute=True)
+    devmodel = salty.aggregate_data(data, T=T, P=P, data_ranges=data_ranges)
 
     def test_1_aggregate_data(self):
         devmodel = salty.aggregate_data(self.data, T=self.T, P=self.P)

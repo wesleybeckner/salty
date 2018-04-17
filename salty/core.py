@@ -40,7 +40,7 @@ class dev_model():
 def merge_duplicates(model_name):
     if model_name is str:
         model_outputs = len(model_name.split("_"))
-        pickle_in = open("../salty/data/MODELS/%s_devmodel.pkl" % model_name,
+        pickle_in = open("../salty/data/%s_devmodel.pkl" % model_name,
                          "rb")
         devmodel = dill.load(pickle_in)
     else:
@@ -74,7 +74,7 @@ def merge_duplicates(model_name):
 def devmodel_to_array(model_name, train_fraction=1):
     if model_name is str:
         model_outputs = len(model_name.split("_"))
-        pickle_in = open("../salty/data/MODELS/%s_devmodel.pkl" % model_name,
+        pickle_in = open("../salty/data/%s_devmodel.pkl" % model_name,
                          "rb")
         devmodel = dill.load(pickle_in)
     else:
@@ -131,7 +131,7 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
     """
     data_files = []
     for i, string in enumerate(data):
-        data_files.append(load_data("MODELS/%s_premodel.csv" % string))
+        data_files.append(load_data("%s_premodel.csv" % string))
         if i == 0:
             merged = data_files[0]
         if i == 1:
@@ -189,7 +189,7 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
 
 
 def load_model(data_file_name):
-    """Loads data from module_path/data/MODELS/data_file_name.
+    """Loads data from module_path/data/data_file_name.
     Parameters
     ----------
     data_file_name : String. Name of dill file to be loaded from
@@ -199,7 +199,7 @@ def load_model(data_file_name):
     data : dev_model object
     """
     module_path = dirname(__file__)
-    with open(join(module_path, 'data/MODELS', data_file_name), 'rb') as \
+    with open(join(module_path, 'data', data_file_name), 'rb') as \
             pickle_file:
         data = dill.load(pickle_file)
     return data

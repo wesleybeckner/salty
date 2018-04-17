@@ -1,11 +1,10 @@
 from __future__ import absolute_import
-from os.path import join as pjoin
 
 # Format expected by setup.py and doc/source/conf.py: string of form "X.Y.Z"
 _version_major = 0
 _version_minor = 2
 _version_micro = ''  # use '' for first of series, number for 1 and above
-_version_extra = 'dev7'
+_version_extra = 'dev14'
 # _version_extra = ''  # Uncomment this for full releases
 
 # Construct full version string from these.
@@ -62,7 +61,5 @@ MAJOR = _version_major
 MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
-PACKAGE_DATA = {'salty_models': [pjoin('data/MODELS', '*')],
-                'salty': [pjoin('data', '*.csv')]}
-# DATA_FILES = [('MODELS', ['data/MODELS/*'])]
+PACKAGE_DATA = {'salty': ['data/*']}
 REQUIRES = ["numpy"]
