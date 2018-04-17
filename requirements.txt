@@ -2,3 +2,5 @@ pandas
 dill
 numpy
 scikit-learn
+keras
+tensorflow
