@@ -1,7 +1,6 @@
 from __future__ import absolute_import, division, print_function
 import salty
 import unittest
-import datetime
 
 
 class data_manipulation_tests(unittest.TestCase):
@@ -27,17 +26,6 @@ class data_manipulation_tests(unittest.TestCase):
         salty.Benchmark.run(self.test_1_aggregate_data)
         salty.Benchmark.run(self.test_2_devmodel_to_array)
         salty.Benchmark.run(self.test_3_merge_duplicates)
-
-    def check_data(self, df):
-        startTime = datetime.datetime.now()
-
-        def fnDisplay(message):
-            display(message, startTime)
-
-
-def display(message, startTime):
-    timeDiff = datetime.datetime.now() - startTime
-    print("{}\t{}".format(timeDiff, message))
 
 
 if __name__ == '__main__':
