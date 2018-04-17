@@ -7,6 +7,11 @@ import datetime
 
 class iupac_smiles_tests(unittest.TestCase):
     data_files = ["cationInfo.csv", "anionInfo.csv"]
+    df = salty.load_data(data_files[0])
+    smiles = df.smiles
+    for i in range(len(smiles)):
+        ion = smiles[i]
+        salty.check_name(ion)
 
     def test_1_check_data(self):
         for i in range(len(self.data_files)):
@@ -28,16 +33,16 @@ class iupac_smiles_tests(unittest.TestCase):
             try:
                 Chem.SanitizeMol(Chem.MolFromSmiles(ion))
             except ValueError:
-                name = salty.checkName(ion)
+                name = salty.check_name(ion)
                 message = "RDKit cannot interpret %s ion SMILES in datafile" \
                           % name
                 fnDisplay(message)
             if "-" not in ion and "+" not in ion:
-                name = salty.checkName(ion)
+                name = salty.check_name(ion)
                 message = "%s ion does not have a charge" % name
                 fnDisplay(message)
             if "." in ion:
-                name = salty.checkName(ion)
+                name = salty.check_name(ion)
                 message = "%s ion contains more than one molecular entity" \
                           % name
                 fnDisplay(message)
