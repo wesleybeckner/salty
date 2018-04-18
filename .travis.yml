@@ -31,6 +31,10 @@ install:
 - travis_retry pip install $PIP_DEPS
 - travis_retry pip install -r requirements.txt
 - travis_retry pip install -e .
+before_script: # configure a headless display to test plot generation
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3 # give xvfb some time to start
 script:
 - flake8 --ignore N802,N806 `find . -name \*.py | grep -v setup.py | grep -v /doc/ | grep -v /scripts/ | grep -v /webapp/ | grep -v /docs/ | grep -v /sphinx/`
 - mkdir for_test
