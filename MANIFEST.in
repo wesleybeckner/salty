@@ -1,4 +1,1 @@
 recursive-include salty/data *.csv *.pkl *.sav *.h5
-prune salty/data/VISCOSITY
-prune salty/data/CPT
-prune salty/data/DENSITY
