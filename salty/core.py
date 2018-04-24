@@ -22,6 +22,12 @@ Salty is a toolkit for interacting with ionic liquid data from ILThermo
 
 
 class dev_model():
+    """
+    the dev_model is the properly formated object to be passed to machine
+    learning engine. The input features are all scaled and centered, the data
+    summary describes the distribution of the data (in terms of state variables
+    and output values).
+    """
     def __init__(self, coef_data, data_summary, data):
         self.Coef_data = coef_data
         self.Data_summary = data_summary
@@ -29,6 +35,27 @@ class dev_model():
 
 
 def merge_duplicates(model_name):
+    """
+    Identifies repeated experimental values and returns mean values for those
+    data along with their standard deviation. Only aggregates experimental
+    values that have been aquired at the same temperature and pressure.
+
+    Parameters
+    ----------
+    model_name: dev_model
+        the dev_model object to be interrogated
+
+    Returns
+    -----------
+    output_val: array
+        array of the means of experimental measurements
+    output_xtd: array
+        array of the standard deviations of repeated experimental measurements
+    running_size: int
+        number of unique experiments
+    salts: list
+        names of salts included in the dataset
+    """
     model_outputs = -6 + model_name.Data_summary.shape[0]
     devmodel = model_name
     cols = devmodel.Data.columns
@@ -56,6 +83,28 @@ def merge_duplicates(model_name):
 
 
 def devmodel_to_array(model_name, train_fraction=1):
+    """
+    a standardized method of turning a dev_model object into training and
+    testing arrays
+
+    Parameters
+    ----------
+    model_name: dev_model
+        the dev_model object to be interrogated
+    train_fraction: int
+        the fraction to be reserved for training
+
+    Returns
+    ----------
+    X_train: array
+        the input training array
+    X_test: array
+        the input testing array
+    Y_train: array
+        the output training array
+    Y_test: array
+        the output testing array
+    """
     model_outputs = -6 + model_name.Data_summary.shape[0]
     devmodel = model_name
     rawdf = devmodel.Data
