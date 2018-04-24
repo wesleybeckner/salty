@@ -162,53 +162,110 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">dill</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">inf</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">exp</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">Imputer</span>
-<span class="c1"># import matplotlib.pylab as plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="c1"># import itertools as it</span>
-<span class="c1"># from scipy.stats import uniform as sp_rand</span>
-<span class="c1"># from scipy.stats import mode</span>
-<span class="c1"># from sklearn.linear_model import LassoLarsIC</span>
-<span class="c1"># from sklearn.linear_model import Lasso</span>
-<span class="c1"># from sklearn.svm import SVR</span>
-<span class="c1"># from sklearn.neural_network import MLPRegressor</span>
-<span class="c1"># from sklearn import preprocessing</span>
-<span class="c1"># from sklearn.model_selection import RandomizedSearchCV</span>
-<span class="c1"># from sklearn.model_selection import cross_val_score</span>
-<span class="c1"># from numpy.random import randint</span>
-<span class="c1"># import numpy.linalg as LINA</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">StandardScaler</span>
-<span class="c1"># __all__ = [&quot;load_data&quot;, &quot;suppress_stdout_stderr&quot;, &quot;Benchmark&quot;,</span>
-<span class="c1">#            &quot;check_name&quot;, &quot;dev_model&quot;, &quot;load_model&quot;, &quot;aggregate_data&quot;]</span>
-<span class="c1">#</span>
-<span class="c1">#</span>
-<span class="c1"># &quot;&quot;&quot;</span>
-<span class="c1"># Salty is a toolkit for interacting with ionic liquid data from ILThermo</span>
-<span class="c1"># &quot;&quot;&quot;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;load_data&quot;</span><span class="p">,</span> <span class="s2">&quot;Benchmark&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;check_name&quot;</span><span class="p">,</span> <span class="s2">&quot;dev_model&quot;</span><span class="p">,</span> <span class="s2">&quot;aggregate_data&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;devmodel_to_array&quot;</span><span class="p">,</span> <span class="s2">&quot;merge_duplicates&quot;</span><span class="p">]</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Salty is a toolkit for interacting with ionic liquid data from ILThermo</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="dev_model"><a class="viewcode-back" href="../../salty.html#salty.core.dev_model">[docs]</a><span class="k">class</span> <span class="nc">dev_model</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    the dev_model is the properly formated object to be passed to machine</span>
+<span class="sd">    learning engine. The input features are all scaled and centered, the data</span>
+<span class="sd">    summary describes the distribution of the data (in terms of state variables</span>
+<span class="sd">    and output values).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coef_data</span><span class="p">,</span> <span class="n">data_summary</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Coef_data</span> <span class="o">=</span> <span class="n">coef_data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Data_summary</span> <span class="o">=</span> <span class="n">data_summary</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Data</span> <span class="o">=</span> <span class="n">data</span></div>
 
 
+<div class="viewcode-block" id="merge_duplicates"><a class="viewcode-back" href="../../salty.html#salty.core.merge_duplicates">[docs]</a><span class="k">def</span> <span class="nf">merge_duplicates</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies repeated experimental values and returns mean values for those</span>
+<span class="sd">    data along with their standard deviation. Only aggregates experimental</span>
+<span class="sd">    values that have been aquired at the same temperature and pressure.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model_name: dev_model</span>
+<span class="sd">        the dev_model object to be interrogated</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -----------</span>
+<span class="sd">    output_val: array</span>
+<span class="sd">        array of the means of experimental measurements</span>
+<span class="sd">    output_xtd: array</span>
+<span class="sd">        array of the standard deviations of repeated experimental measurements</span>
+<span class="sd">    running_size: int</span>
+<span class="sd">        number of unique experiments</span>
+<span class="sd">    salts: list</span>
+<span class="sd">        names of salts included in the dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model_outputs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span> <span class="o">+</span> <span class="n">model_name</span><span class="o">.</span><span class="n">Data_summary</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">devmodel</span> <span class="o">=</span> <span class="n">model_name</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="n">model_outputs</span><span class="p">):</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">700</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">output_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">model_outputs</span><span class="p">):</span>
+            <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="n">output_index</span><span class="p">)]</span> <span class="o">=</span> \
+                <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="n">output_index</span><span class="p">)]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="n">output_val</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">output_xtd</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">running_size</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">output_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">model_outputs</span><span class="p">):</span>
+        <span class="n">output_val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;smiles-cation&#39;</span><span class="p">,</span> <span class="s1">&#39;smiles-anion&#39;</span><span class="p">]</span>
+                                  <span class="p">)[</span><span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="n">output_index</span><span class="p">)]]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+        <span class="n">output_xtd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;smiles-cation&#39;</span><span class="p">,</span> <span class="s1">&#39;smiles-anion&#39;</span><span class="p">]</span>
+                                  <span class="p">)[</span><span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="n">output_index</span><span class="p">)]]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+        <span class="n">running_size</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;smiles-cation&#39;</span><span class="p">,</span> <span class="s1">&#39;smiles-anion&#39;</span><span class="p">]</span>
+                                  <span class="p">)[</span><span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="n">output_index</span><span class="p">)]]</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="n">salts</span> <span class="o">=</span> <span class="p">(</span><span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="p">[</span><span class="s2">&quot;smiles-cation&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span>
+             <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span><span class="p">[</span><span class="s2">&quot;smiles-anion&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>  <span class="c1"># grab unique salts</span>
+    <span class="k">return</span> <span class="n">output_val</span><span class="p">,</span> <span class="n">output_xtd</span><span class="p">,</span> <span class="n">running_size</span><span class="p">,</span> <span class="n">salts</span></div>
+
+
 <div class="viewcode-block" id="devmodel_to_array"><a class="viewcode-back" href="../../salty.html#salty.core.devmodel_to_array">[docs]</a><span class="k">def</span> <span class="nf">devmodel_to_array</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">train_fraction</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">model_name</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">model_outputs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">))</span>
-        <span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../salty/data/MODELS/</span><span class="si">%s</span><span class="s2">_devmodel.pkl&quot;</span> <span class="o">%</span> <span class="n">model_name</span><span class="p">,</span>
-                         <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-        <span class="n">devmodel</span> <span class="o">=</span> <span class="n">dill</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">model_outputs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span> <span class="o">+</span> <span class="n">model_name</span><span class="o">.</span><span class="n">Data_summary</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">devmodel</span> <span class="o">=</span> <span class="n">model_name</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    a standardized method of turning a dev_model object into training and</span>
+<span class="sd">    testing arrays</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model_name: dev_model</span>
+<span class="sd">        the dev_model object to be interrogated</span>
+<span class="sd">    train_fraction: int</span>
+<span class="sd">        the fraction to be reserved for training</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_train: array</span>
+<span class="sd">        the input training array</span>
+<span class="sd">    X_test: array</span>
+<span class="sd">        the input testing array</span>
+<span class="sd">    Y_train: array</span>
+<span class="sd">        the output training array</span>
+<span class="sd">    Y_test: array</span>
+<span class="sd">        the output testing array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model_outputs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span> <span class="o">+</span> <span class="n">model_name</span><span class="o">.</span><span class="n">Data_summary</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">devmodel</span> <span class="o">=</span> <span class="n">model_name</span>
     <span class="n">rawdf</span> <span class="o">=</span> <span class="n">devmodel</span><span class="o">.</span><span class="n">Data</span>
     <span class="n">rawdf</span> <span class="o">=</span> <span class="n">rawdf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">datadf</span> <span class="o">=</span> <span class="n">rawdf</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span>
@@ -258,10 +315,9 @@
 <span class="sd">        returns dev_model object containing scale/center information,</span>
 <span class="sd">        data summary, and the data frame</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">data_files</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">string</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-        <span class="n">data_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;MODELS/</span><span class="si">%s</span><span class="s2">_premodel.csv&quot;</span> <span class="o">%</span> <span class="n">string</span><span class="p">))</span>
+        <span class="n">data_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_data</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">_premodel.csv&quot;</span> <span class="o">%</span> <span class="n">string</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">merged</span> <span class="o">=</span> <span class="n">data_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -318,23 +374,6 @@
     <span class="k">return</span> <span class="n">devmodel</span></div>
 
 
-<div class="viewcode-block" id="load_model"><a class="viewcode-back" href="../../salty.html#salty.core.load_model">[docs]</a><span class="k">def</span> <span class="nf">load_model</span><span class="p">(</span><span class="n">data_file_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Loads data from module_path/data/MODELS/data_file_name.</span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    data_file_name : String. Name of dill file to be loaded from</span>
-<span class="sd">    module_path/data/data_file_name. For example &#39;density_devmodel.pkl&#39;.</span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    data : dev_model object</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">module_path</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data/MODELS&#39;</span><span class="p">,</span> <span class="n">data_file_name</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> \
-            <span class="n">pickle_file</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">dill</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_file</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span></div>
-
-
 <div class="viewcode-block" id="check_name"><a class="viewcode-back" href="../../salty.html#salty.core.check_name">[docs]</a><span class="k">def</span> <span class="nf">check_name</span><span class="p">(</span><span class="n">user_query</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    checkName uses a database to return either SMILES or IUPAC</span>
@@ -385,11 +424,11 @@
         <span class="k">return</span> <span class="n">target</span></div>
 
 
-<div class="viewcode-block" id="load_data"><a class="viewcode-back" href="../../salty.html#salty.core.load_data">[docs]</a><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">data_file_name</span><span class="p">,</span> <span class="n">pickleFile</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simpleList</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="load_data"><a class="viewcode-back" href="../../salty.html#salty.core.load_data">[docs]</a><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">data_file_name</span><span class="p">,</span> <span class="n">dillFile</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Loads data from module_path/data/data_file_name.</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    data_file_name : String. Name of csv or pickle file to be loaded from</span>
+<span class="sd">    data_file_name : String. Name of csv or dill file to be loaded from</span>
 <span class="sd">    module_path/data/data_file_name. For example &#39;salt_info.csv&#39;.</span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -399,47 +438,14 @@
 <span class="sd">        salt.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">module_path</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">pickleFile</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">dillFile</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">data_file_name</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> \
-                <span class="n">pickle_file</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">simpleList</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">data_file_name</span><span class="p">))</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">csv_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+                <span class="n">dill_file</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">dill</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dill_file</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">data_file_name</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">data</span></div>
-
-
-<div class="viewcode-block" id="suppress_stdout_stderr"><a class="viewcode-back" href="../../salty.html#salty.core.suppress_stdout_stderr">[docs]</a><span class="k">class</span> <span class="nc">suppress_stdout_stderr</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    A context manager for doing a &quot;deep suppression&quot; of stdout and stderr in</span>
-<span class="sd">    Python, i.e. will suppress all print, even if the print originates in a</span>
-<span class="sd">    compiled C/Fortran sub-function.</span>
-<span class="sd">       This will not suppress raised exceptions, since exceptions are printed</span>
-<span class="sd">    to stderr just before a script exits, and after the context manager has</span>
-<span class="sd">    exited (at least, I think that is why it lets exceptions through).</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Open a pair of null files</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">null_fds</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">devnull</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">O_RDWR</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
-        <span class="c1"># Save the actual stdout (1) and stderr (2) file descriptors.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">save_fds</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">dup</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">dup</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
-
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Assign the null pointers to stdout and stderr.</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null_fds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null_fds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
-        <span class="c1"># Re-assign the real stdout/stderr back to (1) and (2)</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_fds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_fds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="c1"># Close all file descriptors</span>
-        <span class="k">for</span> <span class="n">fd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">null_fds</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_fds</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Benchmark"><a class="viewcode-back" href="../../salty.html#salty.core.Benchmark">[docs]</a><span class="k">class</span> <span class="nc">Benchmark</span><span class="p">:</span>

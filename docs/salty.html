@@ -94,6 +94,8 @@
 <li class="toctree-l1"><a class="reference internal" href="salty_readme.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Salty</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-salty.core">salty.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-salty.adaptive_learn">salty.adaptive_learn module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-salty.visualization">salty.visualization module</a></li>
 </ul>
 </li>
 </ul>
@@ -163,6 +165,27 @@
 <h1>Salty<a class="headerlink" href="#salty" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-salty.core">
 <span id="salty-core-module"></span><h2>salty.core module<a class="headerlink" href="#module-salty.core" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="salty.core.load_data">
+<code class="descclassname">salty.core.</code><code class="descname">load_data</code><span class="sig-paren">(</span><em>data_file_name</em>, <em>dillFile=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data from module_path/data/data_file_name.
+:param data_file_name:
+:type data_file_name: String. Name of csv or dill file to be loaded from
+:param module_path/data/data_file_name. For example &#8216;salt_info.csv&#8217;.:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong> &#8211; A data frame. For example with each row representing one
+salt and each column representing the features of a given
+salt.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Pandas DataFrame</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="class">
 <dt id="salty.core.Benchmark">
 <em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">Benchmark</code><a class="reference internal" href="_modules/salty/core.html#Benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.Benchmark" title="Permalink to this definition">¶</a></dt>
@@ -172,6 +195,39 @@
 <em class="property">static </em><code class="descname">run</code><span class="sig-paren">(</span><em>function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#Benchmark.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.Benchmark.run" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="function">
+<dt id="salty.core.check_name">
+<code class="descclassname">salty.core.</code><code class="descname">check_name</code><span class="sig-paren">(</span><em>user_query</em>, <em>index=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#check_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.check_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>checkName uses a database to return either SMILES or IUPAC
+names of cations/anions.</p>
+<p>Default behavior is to return the SMILES encoding of an ion given
+the ion name as input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_query</strong> (<em>str</em>) &#8211; string that will be used to query the database.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> &#8211; either the name of the salt, cation, or anion; or SMILES of the
+salt, cation, or anion (SMILES for the salt are written as the
+cation and ion SMILES strings separated by a comma)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="salty.core.dev_model">
+<em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">dev_model</code><span class="sig-paren">(</span><em>coef_data</em>, <em>data_summary</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#dev_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.dev_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>the dev_model is the properly formated object to be passed to machine
+learning engine. The input features are all scaled and centered, the data
+summary describes the distribution of the data (in terms of state variables
+and output values).</p>
 </dd></dl>
 
 <dl class="function">
@@ -204,90 +260,117 @@ data summary, and the data frame</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="salty.core.check_name">
-<code class="descclassname">salty.core.</code><code class="descname">check_name</code><span class="sig-paren">(</span><em>user_query</em>, <em>index=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#check_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.check_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>checkName uses a database to return either SMILES or IUPAC
-names of cations/anions.</p>
-<p>Default behavior is to return the SMILES encoding of an ion given
-the ion name as input.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_query</strong> (<em>str</em>) &#8211; string that will be used to query the database.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> &#8211; either the name of the salt, cation, or anion; or SMILES of the
-salt, cation, or anion (SMILES for the salt are written as the
-cation and ion SMILES strings separated by a comma)</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="salty.core.dev_model">
-<em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">dev_model</code><span class="sig-paren">(</span><em>coef_data</em>, <em>data_summary</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#dev_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.dev_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-</dd></dl>
-
-<dl class="function">
 <dt id="salty.core.devmodel_to_array">
 <code class="descclassname">salty.core.</code><code class="descname">devmodel_to_array</code><span class="sig-paren">(</span><em>model_name</em>, <em>train_fraction=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#devmodel_to_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.devmodel_to_array" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="salty.core.load_data">
-<code class="descclassname">salty.core.</code><code class="descname">load_data</code><span class="sig-paren">(</span><em>data_file_name</em>, <em>pickleFile=False</em>, <em>simpleList=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.load_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads data from module_path/data/data_file_name.
-:param data_file_name:
-:type data_file_name: String. Name of csv or pickle file to be loaded from
-:param module_path/data/data_file_name. For example &#8216;salt_info.csv&#8217;.:</p>
+<dd><p>a standardized method of turning a dev_model object into training and
+testing arrays</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong> &#8211; A data frame. For example with each row representing one
-salt and each column representing the features of a given
-salt.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>model_name</strong> (<a class="reference internal" href="#salty.core.dev_model" title="salty.core.dev_model"><em>dev_model</em></a>) &#8211; the dev_model object to be interrogated</li>
+<li><strong>train_fraction</strong> (<em>int</em>) &#8211; the fraction to be reserved for training</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Pandas DataFrame</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>X_train</strong> (<em>array</em>) &#8211; the input training array</li>
+<li><strong>X_test</strong> (<em>array</em>) &#8211; the input testing array</li>
+<li><strong>Y_train</strong> (<em>array</em>) &#8211; the output training array</li>
+<li><strong>Y_test</strong> (<em>array</em>) &#8211; the output testing array</li>
+</ul>
+</p>
+</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="function">
-<dt id="salty.core.load_model">
-<code class="descclassname">salty.core.</code><code class="descname">load_model</code><span class="sig-paren">(</span><em>data_file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#load_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.load_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads data from module_path/data/MODELS/data_file_name.
-:param data_file_name:
-:type data_file_name: String. Name of dill file to be loaded from
-:param module_path/data/data_file_name. For example &#8216;density_devmodel.pkl&#8217;.:</p>
+<dt id="salty.core.merge_duplicates">
+<code class="descclassname">salty.core.</code><code class="descname">merge_duplicates</code><span class="sig-paren">(</span><em>model_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/core.html#merge_duplicates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.merge_duplicates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identifies repeated experimental values and returns mean values for those
+data along with their standard deviation. Only aggregates experimental
+values that have been aquired at the same temperature and pressure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>model_name</strong> (<a class="reference internal" href="#salty.core.dev_model" title="salty.core.dev_model"><em>dev_model</em></a>) &#8211; the dev_model object to be interrogated</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dev_model object</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>output_val</strong> (<em>array</em>) &#8211; array of the means of experimental measurements</li>
+<li><strong>output_xtd</strong> (<em>array</em>) &#8211; array of the standard deviations of repeated experimental measurements</li>
+<li><strong>running_size</strong> (<em>int</em>) &#8211; number of unique experiments</li>
+<li><strong>salts</strong> (<em>list</em>) &#8211; names of salts included in the dataset</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-<dl class="class">
-<dt id="salty.core.suppress_stdout_stderr">
-<em class="property">class </em><code class="descclassname">salty.core.</code><code class="descname">suppress_stdout_stderr</code><a class="reference internal" href="_modules/salty/core.html#suppress_stdout_stderr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.core.suppress_stdout_stderr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>A context manager for doing a &#8220;deep suppression&#8221; of stdout and stderr in
-Python, i.e. will suppress all print, even if the print originates in a
-compiled C/Fortran sub-function.</p>
+</div>
+<div class="section" id="module-salty.adaptive_learn">
+<span id="salty-adaptive-learn-module"></span><h2>salty.adaptive_learn module<a class="headerlink" href="#module-salty.adaptive_learn" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="salty.adaptive_learn.expand_convex_hull">
+<code class="descclassname">salty.adaptive_learn.</code><code class="descname">expand_convex_hull</code><span class="sig-paren">(</span><em>data, expansion_target=[1, 1.005], target_number=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/adaptive_learn.html#expand_convex_hull"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.adaptive_learn.expand_convex_hull" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method of identifying property target values based on historical
+experimental data. The function returns targets outside the convex hull
+formed by the experimental data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>pandas dataframe</em>) &#8211; the data frame to be interrogated</li>
+<li><strong>expansion_target</strong> (<em>float</em>) &#8211; the relative area/volume expansion desired (compared to the initial
+area/volume described by the historical data)</li>
+<li><strong>target_number</strong> (<em>int</em>) &#8211; the number of targets desired</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>target_list</strong> &#8211; the list of property targets</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list of floats</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-salty.visualization">
+<span id="salty-visualization-module"></span><h2>salty.visualization module<a class="headerlink" href="#module-salty.visualization" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="salty.visualization.parity_plot">
+<code class="descclassname">salty.visualization.</code><code class="descname">parity_plot</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>model</em>, <em>devmodel</em>, <em>axes_labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/salty/visualization.html#parity_plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#salty.visualization.parity_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>A standard method of creating parity plots between predicted and
+experimental values for trained models.
+:param X: experimental input data
+:type X: array
+:param Y: experimental output data
+:type Y: array
+:param model: either sklearn or keras ML model
+:type model: model object
+:param devmodel: salty dev_model
+:type devmodel: dev_model object
+:param axes_labels: optional. Default behavior is to use the labels in the dev_model</p>
 <blockquote>
-<div>This will not suppress raised exceptions, since exceptions are printed</div></blockquote>
-<p>to stderr just before a script exits, and after the context manager has
-exited (at least, I think that is why it lets exceptions through).</p>
+<div>object.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>plt</strong> &#8211; parity plot of predicted vs experimental values</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">matplotlib object</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
