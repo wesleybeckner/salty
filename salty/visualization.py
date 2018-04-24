@@ -4,6 +4,28 @@ import numpy as np
 
 
 def parity_plot(X, Y, model, devmodel, axes_labels=None):
+    """
+    A standard method of creating parity plots between predicted and
+    experimental values for trained models.
+    Parameters
+    ----------
+    X: array
+        experimental input data
+    Y: array
+        experimental output data
+    model: model object
+        either sklearn or keras ML model
+    devmodel: dev_model object
+        salty dev_model
+    axes_labels: dict
+        optional. Default behavior is to use the labels in the dev_model
+        object.
+
+    Returns
+    ------------------
+    plt: matplotlib object
+        parity plot of predicted vs experimental values
+    """
     model_outputs = Y.shape[1]
     with plt.style.context('seaborn-whitegrid'):
         fig = plt.figure(figsize=(2.5 * model_outputs, 2.5), dpi=300)
