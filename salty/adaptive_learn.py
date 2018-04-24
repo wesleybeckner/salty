@@ -5,6 +5,7 @@ from scipy.spatial import ConvexHull
 import pandas as pd
 from salty import merge_duplicates
 
+
 def expand_convex_hull(data, expansion_target=[1, 1.005], target_number=10):
     """
     A method of identifying property target values based on historical
@@ -32,8 +33,8 @@ def expand_convex_hull(data, expansion_target=[1, 1.005], target_number=10):
     hull = ConvexHull(dataDf)
     target_list = []
     while True:
-        candidate = [randint(int(np.min(vals[1])),int(np.max(vals[1]))),
-                     randint(int(np.min(vals[0])),int(np.max(vals[0])))]
+        candidate = [randint(int(np.min(vals[1])), int(np.max(vals[1]))),
+                     randint(int(np.min(vals[0])), int(np.max(vals[0])))]
         df = pd.DataFrame(candidate, index=np.arange(2).reshape(2)).T
         df = pd.concat((dataDf, df))
         newhull = ConvexHull(df)
