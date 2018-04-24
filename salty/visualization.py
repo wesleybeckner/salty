@@ -7,6 +7,7 @@ def parity_plot(X, Y, model, devmodel, axes_labels=None):
     """
     A standard method of creating parity plots between predicted and
     experimental values for trained models.
+    
     Parameters
     ----------
     X: array
