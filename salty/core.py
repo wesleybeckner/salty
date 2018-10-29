@@ -11,7 +11,8 @@ from math import exp
 from sklearn.preprocessing import Imputer
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-__all__ = ["load_data", "Benchmark",
+
+__all__ = ["load_data", "Benchmark", "assign_category",
            "check_name", "dev_model", "aggregate_data",
            "devmodel_to_array", "merge_duplicates"]
 
@@ -34,27 +35,72 @@ class dev_model():
         self.Data = data
 
 
-def merge_duplicates(model_name):
+def assign_category(salts):
+    """
+    Identifies IL type based on name/str
+
+    Parameters
+    ----------
+    salts: pandas DataFrame
+        dataframe containing column with cation name
+
+    Returns
+    ----------
+    salts: pandas DataFrame
+        returns the same dataframe with categories
+    """
+    if "name-cation" in salts.columns:
+        label = "name-cation"
+    elif "Molecular Relative" in salts.columns:
+        label = "Molecular Relative"
+    else:
+        print("No salt-name column found in DataFrame")
+        raise BaseException
+    category = []
+    missed = []
+    for i in range(salts.shape[0]):
+        if ("imidazol" in salts[label].iloc[i]):
+            category.append("Imidazolium")
+        elif ("pyridin" in salts[label].iloc[i]):
+            category.append("Pyridinium")
+        elif ("pyrrolidin" in salts[label].iloc[i]):
+            category.append("Pyrrolidinium")
+        elif ("piperidin" in salts[label].iloc[i]):
+            category.append("Piperidinium")
+        elif ("phosphon" in salts[label].iloc[i]):
+            category.append("Phosphonium")
+        elif ("quinol" in salts[label].iloc[i]):
+            category.append("Quinolinium")
+        elif ("ammon" in salts[label].iloc[i]):
+            category.append("Ammonium")
+        elif ("amin" in salts[label].iloc[i]):
+            category.append("Aminium")
+        else:
+            category.append("Other")
+            missed.append(salts[label].iloc[i])
+    print("ILs labeled as other: {}\n{}".format(len(missed),missed))
+    salts["category"] = category
+    return salts
+
+
+def merge_duplicates(model_name, keep_descriptors=False):
     """
     Identifies repeated experimental values and returns mean values for those
     data along with their standard deviation. Only aggregates experimental
-    values that have been aquired at the same temperature and pressure.
+    values that have been acquired at the same temperature and pressure.
 
     Parameters
     ----------
     model_name: dev_model
         the dev_model object to be interrogated
+    keep_descriptors: boolean, default False
+        if True descriptors will be included in the output DataFrame
 
     Returns
     -----------
-    output_val: array
-        array of the means of experimental measurements
-    output_xtd: array
-        array of the standard deviations of repeated experimental measurements
-    running_size: int
-        number of unique experiments
-    salts: list
-        names of salts included in the dataset
+    out: dataframe
+        pandas DataFrame of the original data where repeated measurements
+        have been averaged and their variance stored in a separate column
     """
     model_outputs = -6 + model_name.Data_summary.shape[0]
     devmodel = model_name
@@ -62,24 +108,46 @@ def merge_duplicates(model_name):
     if (devmodel.Data.iloc[:, -(4 + model_outputs):-4].max() < 700).all():
         for output_index in range(model_outputs):
             devmodel.Data.iloc[:, -(5 + output_index)] = \
-                devmodel.Data.iloc[:, -(5 + output_index)].apply(
-                    lambda x: exp(float(x)))
-    output_val = []
-    output_xtd = []
-    running_size = []
+            devmodel.Data.iloc[:, -(5 + output_index)].apply(
+            lambda x: exp(float(x)))
+    output_val = pd.DataFrame()
+    output_xtd = pd.DataFrame()
     for output_index in range(model_outputs):
-        output_val.append(
-            devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
-                                  )[cols[-(5 + output_index)]].mean())
-        output_xtd.append(
-            devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
-                                  )[cols[-(5 + output_index)]].std())
-        running_size.append(
-            devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
-                                  )[cols[-(5 + output_index)]].count())
+        val = devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )[cols[-(5 + output_index)]].mean().reset_index()
+        xtd = devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )[cols[-(5 + output_index)]].std().reset_index()
+        if output_index == 0:
+            output_val = val
+            output_xtd = xtd
+        else:
+            output_val = pd.merge(output_val,val)
+            output_xtd = pd.merge(output_xtd,xtd)
+    size = devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )[cols[-(5 + output_index)]].count().reset_index()
+    cations = devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                   )['name-cation'].first().reset_index()
+    anions = devmodel.Data.groupby(['smiles-cation', 'smiles-anion']
+                                  )['name-anion'].first().reset_index()
+
+    size.columns.values[2] = "count"
+
     salts = (devmodel.Data["smiles-cation"] + "." +
              devmodel.Data["smiles-anion"]).unique()  # grab unique salts
-    return output_val, output_xtd, running_size, salts
+    print("Identified {} unique salts in {} datapoints".format(len(salts),devmodel.Data.shape[0]))
+    out = pd.merge(output_val,output_xtd,on=['smiles-cation','smiles-anion'],suffixes=['_mean' , '_std'])
+    out = pd.merge(out,size)
+    out = pd.merge(out,cations)
+    out = pd.merge(out,anions)
+    if keep_descriptors:
+        cationDescriptors = load_data("cationDescriptors.csv")
+        cationDescriptors.columns = [str(col) + '-cation' for col in cationDescriptors.columns]
+        anionDescriptors = load_data("anionDescriptors.csv")
+        anionDescriptors.columns = [str(col) + '-anion' for col in anionDescriptors.columns]
+        new_df = pd.merge(cationDescriptors, out, on=["name-cation","smiles-cation"], how="right")
+        new_df = pd.merge(anionDescriptors, new_df, on=["name-anion","smiles-anion"], how="right")
+        out = new_df
+    return out
 
 
 def devmodel_to_array(model_name, train_fraction=1):
@@ -131,7 +199,8 @@ def devmodel_to_array(model_name, train_fraction=1):
 
 
 def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
-                   merge="overlap", feature_type=None, impute=False):
+                   merge="overlap", feature_type=None, impute=False,
+                   scale_center=True):
     """
     Aggregates molecular data for model training
 
@@ -202,15 +271,21 @@ def aggregate_data(data, T=[0, inf], P=[0, inf], data_ranges=None,
         imp = Imputer(missing_values='NaN', strategy="median", axis=0)
         X = imp.fit_transform(dataDf)
         dataDf = pd.DataFrame(X, columns=cols)
-    for i in range(1, len(data) + 1):
-        dataDf.is_copy = False
-        dataDf.iloc[:, -i] = dataDf.iloc[:, -i].apply(lambda x: log(float(x)))
     instance = StandardScaler()
-    scaled_data = pd.DataFrame(instance.fit_transform(
+    if scale_center:
+        for i in range(1, len(data) + 1):
+            dataDf.is_copy = False
+            dataDf.iloc[:, -i] = dataDf.iloc[:, -i].apply(lambda x: log(float(x)))
+        scaled_data = pd.DataFrame(instance.fit_transform(
         dataDf.iloc[:, :-len(data)]), columns=cols[:-len(data)])
-    df = pd.concat([scaled_data, dataDf.iloc[:, -len(data):], metaDf], axis=1)
-    mean_std_of_coeffs = pd.DataFrame([instance.mean_, instance.scale_],
+        df = pd.concat([scaled_data, dataDf.iloc[:, -len(data):], metaDf], axis=1)
+        mean_std_of_coeffs = pd.DataFrame([instance.mean_, instance.scale_],
                                       columns=cols[:-len(data)])
+    else:
+        instance.fit(dataDf.iloc[:, :-len(data)])
+        df = pd.concat([dataDf, metaDf], axis=1)
+        mean_std_of_coeffs = pd.DataFrame([instance.mean_, instance.scale_],
+                                          columns=cols[:-len(data)])
     devmodel = dev_model(mean_std_of_coeffs, data_summary, df)
     return devmodel
 

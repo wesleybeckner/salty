@@ -159,7 +159,7 @@ trihexyl(tetradecyl)-phosphonium,C(CCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC)CCCCC
 1-ethyl-3-methylimidazolium,CCn1cc[n+](c1)C
 1-hexyl-3-methylimidazolium,CCCCCCn1cc[n+](c1)C
 1-butyl-3-methylpyridinium,CCCC[n+]1cccc(c1)C
-1-butyl-4-methylpyridinium,CCCC[n+]1ccc(cc1)C
+1-butyl-4-methylpyridinium,CCCC[N+]1=CC=C(C=C1)C
 1-butylpyridinium,CCCC[n+]1ccccc1
 1-propylpyridinium,CCC[n+]1ccccc1
 1-butyl-1-methylpyrrolidinium,CCCC[N+]1(CCCC1)C

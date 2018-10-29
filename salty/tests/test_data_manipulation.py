@@ -9,6 +9,9 @@ class data_manipulation_tests(unittest.TestCase):
     data_ranges = [[200, 1000], [900, 1300], [0, 2]]
     T = [298.1, 298.16]
     P = [101, 102]
+    devmodel1 = salty.aggregate_data(data2, T=T, P=P, impute=True,
+                                    data_ranges=data_ranges,
+                                    scale_center=False)
     devmodel = salty.aggregate_data(data2, T=T, P=P, impute=True,
                                     data_ranges=data_ranges)
 
@@ -22,8 +25,8 @@ class data_manipulation_tests(unittest.TestCase):
         return X_train, Y_train, X_test, Y_test
 
     def test_3_merge_duplicates(self):
-        vals, stds, size, salts = salty.merge_duplicates(self.devmodel)
-        return vals, stds, size, salts
+        data = salty.merge_duplicates(self.devmodel)
+        return data
 
     def test_benchmark(self):
         salty.Benchmark.run(self.test_1_aggregate_data)

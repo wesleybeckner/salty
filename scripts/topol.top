@@ -1,0 +1,37 @@
+; Topology file for simulation of liquid Argon
+; Argon LJ parameters from:
+;   Rahman, A., Correlations in the motion of
+;   atoms in liquid argon. Phys. Rev. 136 (1964) 405-411
+
+;;;------------------------------------------------------------
+;;; OPLS-AA force field settings and parameters
+
+[ defaults ]
+; OPLS-AA force field
+; nbfunc	comb-rule	gen-pairs	fudgeLJ	fudgeQQ
+1		3		yes		0.5	0.5
+
+[ atomtypes ]
+; full atom descriptions are available in ffoplsaa.atp
+; name  bond_type    mass    charge   ptype   sigma    epsilon
+;                    (u)     (e)              (nm)     (kJ/mol)
+Ar      Ar           39.948  0        A       0.34     0.99774
+
+[ molecule_type ]
+Argon	1
+
+[ atoms ]
+;   nr   type  resnr residue  atom   cgnr     charge       mass
+     1	   Ar  1     Ar       Ar     1        0
+;;;
+;;;------------------------------------------------------------
+
+
+
+[ system ]
+; Name
+Argon (Rahman 1964)
+
+[ molecules ]
+; Compound        #mols
+Argon		  512

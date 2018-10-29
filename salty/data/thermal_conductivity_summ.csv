@@ -1,0 +1,32 @@
+,0
+Unique salts,61
+Cations,"array(['CCCCCCCCn1cc[n+](c1)C', 'CCCCn1cc[n+](c1)C', 'CCn1cc[n+](c1)C',
+       'CCCCCCn1cc[n+](c1)C', 'CCCC[n+]1ccccc1', 'CCCCCC[n+]1ccccc1',
+       'CCCCCCCC[n+]1ccccc1', 'Cn1c[n+](cc1)CCC',
+       'Cn1cc[n+](c1)CCCCCCCCCC', 'CCCC[N+]1(CCCC1)C',
+       'C(CCCCCCCC[P+](CCCCCC)(CCCCCC)CCCCCC)CCCCC', 'C[n+]1cc[nH]c1',
+       'CC[n+]1cn(cc1)C', 'CN(C)c1c(C)c[n+](cc1)CCCCCC',
+       'CCCCCCCC[N+](C)(CCCCCCCC)CCCCCCCC', 'Cn1cc[n+](c1)C',
+       'CCCC[P+](CCCC)(CCCC)CCCC', 'CCCC[N+](C)(CCCC)CCCC',
+       'CCCn1cc[n+](c1C)C', 'CCCCCCCCCCn1cc[n+](c1)C',
+       'CCCCn1cc[n+](c1C)C', 'C1=C[N+](CCC)=CN1CCC',
+       'CCCC[n+]1ccc(N(C)C)c(c1)', '[P+](CCCC)(CCCC)(CCCC)(C)'],
+      dtype=object)"
+Anions,"array(['[B-](F)(F)(F)F', 'F[P-](F)(F)(F)(F)F', 'N#C[B-](C#N)(C#N)C#N',
+       'C(F)(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F', 'C(#N)[N-]C#N',
+       'C(F)(F)(F)S(=O)(=O)[O-]', 'CS(=O)(=O)[O-]', 'C(#N)[C-](C#N)C#N',
+       'C(#N)[S-]', 'CC(=O)[O-]', '[Cl-]',
+       'CC(CC(C)(C)C)CP(=O)(CC(C)CC(C)(C)C)[O-]', 'C(=C(C#N)C#N)=[N-]',
+       'COP(=O)([O-])OC', 'CCOP(=O)([O-])OCC', 'C(=O)(C(F)(F)F)[O-]',
+       'C(CS(=O)(=O)[O-])N', 'C(CCN)C[C@@H](C(=O)[O-])N',
+       'C[C@H]([C@@H](C(=O)[O-])N)O', 'C([C@@H](C(=O)[O-])N)S',
+       'CC(C)[C@@H](C(=O)[O-])N',
+       'C(C(F)(F)[P-](C(C(F)(F)F)(F)F)(C(C(F)(F)F)(F)F)(F)(F)F)(F)(F)F',
+       'FC(F)(F)S(=O)(=O)[N-]S(=O)(=O)C(F)(F)F', 'C([C@@H](C(=O)[O-])N)O',
+       'C1C[C@H](NC1)C(=O)[O-]', 'CCOS(=O)(=O)[O-]',
+       'CCCCCCCCOS(=O)(=O)[O-]', 'COS(=O)(=O)[O-]', 'COP(=O)([O-])'],
+      dtype=object)"
+Total datapoints,474
+thermal_conductivity,0.105 - 0.238
+Temperature range (K),100.0 - 101.325
+Pressure range (kPa),273.15 - 390.0
