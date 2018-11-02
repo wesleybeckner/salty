@@ -1,4 +1,4 @@
-scripts/development
+scripts/development/data
 # ignore all jupyter notebooks for now?
 # scripts/*.ipynb
 
