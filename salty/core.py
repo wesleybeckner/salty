@@ -55,7 +55,6 @@ def assign_category(salts):
         label = "Molecular Relative"
     else:
         print("No salt-name column found in DataFrame")
-        raise BaseException
     category = []
     missed = []
     for i in range(salts.shape[0]):

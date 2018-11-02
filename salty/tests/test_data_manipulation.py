@@ -35,8 +35,7 @@ class data_manipulation_tests(unittest.TestCase):
         with_relative.drop(columns='name-cation', inplace=True)
         missed_entry_test = salty.assign_category(with_relative)
         data = salty.assign_category(self.devmodel1.Data)
-        no_column_test = salty.assign_category(pd.DataFrame())
-        return data, missed_entry_test, no_column_test
+        return data, missed_entry_test
 
     def test_benchmark(self):
         salty.Benchmark.run(self.test_1_aggregate_data)
