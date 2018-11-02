@@ -10,8 +10,8 @@ class data_manipulation_tests(unittest.TestCase):
     T = [298.1, 298.16]
     P = [101, 102]
     devmodel1 = salty.aggregate_data(data2, T=T, P=P, impute=True,
-                                    data_ranges=data_ranges,
-                                    scale_center=False)
+                                     data_ranges=data_ranges,
+                                     scale_center=False)
     devmodel = salty.aggregate_data(data2, T=T, P=P, impute=True,
                                     data_ranges=data_ranges)
 

@@ -1,0 +1,4 @@
+[
+  "salty/tests/test_visualization_library.py::visualization_library_tests::test_1_parity_plot",
+  "salty/tests/test_visualization_library.py::visualization_library_tests::test_benchmark"
+]

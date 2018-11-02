@@ -1,6 +1,6 @@
 scripts/development
 # ignore all jupyter notebooks for now?
-scripts/*.ipynb
+# scripts/*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

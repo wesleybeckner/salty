@@ -1,0 +1,6 @@
+{
+  "salty/tests/test_data_manipulation.py": true,
+  "salty/tests/test_iupac_smiles.py": true,
+  "salty/tests/test_visualization_library.py::visualization_library_tests::test_1_parity_plot": true,
+  "salty/tests/test_visualization_library.py::visualization_library_tests::test_benchmark": true
+}

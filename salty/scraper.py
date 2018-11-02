@@ -1,4 +1,6 @@
 from __future__ import print_function
+from time import sleep
+import requests
 
 
 def il_scrape(prp, ncmp=1):
@@ -26,7 +28,6 @@ def il_scrape(prp, ncmp=1):
     -------
     data : json structure
     """
-
 
     paper_url = "http://ilthermo.boulder.nist.gov/ILT2/ilsearch?" \
                 "cmp=&ncmp={}&year=&auth=&keyw=&prp={}".format(ncmp, prp)

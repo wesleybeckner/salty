@@ -1,5 +1,0 @@
-ci = {"Imidazolium": 'blue', 'Aminium': 'green', 'Quinolinium': 'red', 'Pyridinium': 'purple',
-       'Pyrrolidinium': 'pink', 'Piperidinium': 'gray', 'Phosphonium': 'olive', 'Ammonium': 'cyan'}
-df = pd.read_csv("assets/vizapp.csv")
-df["colors"] = df ["category"]
-df = df.replace({"colors": ci})
