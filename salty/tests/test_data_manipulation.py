@@ -1,6 +1,7 @@
 from __future__ import absolute_import, division, print_function
 import salty
 import unittest
+import pandas as pd
 
 
 class data_manipulation_tests(unittest.TestCase):
@@ -29,8 +30,13 @@ class data_manipulation_tests(unittest.TestCase):
         return data
 
     def test_4_assign_category(self):
+        with_relative = self.devmodel1.Data
+        with_relative['Molecular Relative'] = ''
+        with_relative.drop(columns='name-cation', inplace=True)
+        missed_entry_test = salty.assign_category(with_relative)
         data = salty.assign_category(self.devmodel1.Data)
-        return data
+        no_column_test = salty.assign_category(pd.DataFrame())
+        return data, missed_entry_test, no_column_test
 
     def test_benchmark(self):
         salty.Benchmark.run(self.test_1_aggregate_data)
