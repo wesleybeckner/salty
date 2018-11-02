@@ -28,10 +28,15 @@ class data_manipulation_tests(unittest.TestCase):
         data = salty.merge_duplicates(self.devmodel)
         return data
 
+    def test_4_assign_category(self):
+        data = salty.assign_category(self.devmodel1.Data)
+        return data
+
     def test_benchmark(self):
         salty.Benchmark.run(self.test_1_aggregate_data)
         salty.Benchmark.run(self.test_2_devmodel_to_array)
         salty.Benchmark.run(self.test_3_merge_duplicates)
+        salty.Benchmark.run(self.test_4_assign_category)
 
 
 if __name__ == '__main__':
