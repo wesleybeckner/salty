@@ -18,8 +18,13 @@ class iupac_smiles_tests(unittest.TestCase):
             df = salty.load_data(self.data_files[i])
             self.check_data(df)
 
+    def test_2_check_wrong_ion(selfs):
+        ion = 'stupid_nonsense_string'
+        salty.check_name(ion)
+
     def test_benchmark(self):
         salty.Benchmark.run(self.test_1_check_data)
+        salty.Benchmark.run(self.test_2_check_wrong_ion)
 
     def check_data(self, df):
         startTime = datetime.datetime.now()

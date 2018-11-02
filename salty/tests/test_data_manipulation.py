@@ -25,7 +25,7 @@ class data_manipulation_tests(unittest.TestCase):
         return X_train, Y_train, X_test, Y_test
 
     def test_3_merge_duplicates(self):
-        data = salty.merge_duplicates(self.devmodel)
+        data = salty.merge_duplicates(self.devmodel, keep_descriptors=True)
         return data
 
     def test_4_assign_category(self):
