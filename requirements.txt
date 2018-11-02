@@ -3,6 +3,6 @@ pandas
 dill
 numpy
 scikit-learn
-keras
+Keras==2.1.6
 tensorflow
 mdanalysis
