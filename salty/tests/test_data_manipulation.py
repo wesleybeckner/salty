@@ -30,9 +30,6 @@ class data_manipulation_tests(unittest.TestCase):
         return data
 
     def test_4_assign_category(self):
-        with_relative = self.devmodel1.Data
-        with_relative['Molecular Relative'] = ''
-        missed_entry_test = salty.assign_category(with_relative)
         data = salty.assign_category(self.devmodel1.Data)
         return data, missed_entry_test
 
