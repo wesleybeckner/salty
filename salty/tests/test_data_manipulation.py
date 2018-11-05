@@ -1,7 +1,6 @@
 from __future__ import absolute_import, division, print_function
 import salty
 import unittest
-import pandas as pd
 
 
 class data_manipulation_tests(unittest.TestCase):
@@ -31,7 +30,7 @@ class data_manipulation_tests(unittest.TestCase):
 
     def test_4_assign_category(self):
         data = salty.assign_category(self.devmodel1.Data)
-        return data, missed_entry_test
+        return data
 
     def test_benchmark(self):
         salty.Benchmark.run(self.test_1_aggregate_data)
