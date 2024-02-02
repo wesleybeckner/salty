@@ -1,4 +1,4 @@
-dash==0.21.1  # The core dash backend
+dash==2.15.0  # The core dash backend
 dash-renderer==0.13.0  # The dash front-end
 dash-html-components==0.11.0  # HTML components
 dash-core-components==0.23.0  # Supercharged components
